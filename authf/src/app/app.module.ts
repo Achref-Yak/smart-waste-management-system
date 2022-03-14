@@ -14,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { SocialLoginComponent } from './components/social-login/social-login.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
@@ -34,7 +33,6 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     LoginComponent,
     ProfileComponent,
     EmailSignupComponent,
-    SocialLoginComponent,
     LogoutComponent,
     ForgotpasswordComponent,
     ForgotpasswordemailComponent,
