@@ -1,0 +1,45 @@
+
+<div class="card">
+  <h4 class="card-header">Register</h4>
+  <div class="card-body">
+    {{ serverError }}
+      <form [formGroup]="form" (ngSubmit)="onSubmit()"  fxLayout="column">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+              <input matInput type="text" formControlName="name" [(ngModel)]="user.name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required"> Name is required</div>
+              </div>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+              <input matInput type="text" formControlName="email" [(ngModel)]="user.email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">email is required</div>
+              </div>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" [(ngModel)]="user.password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                  <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+              </div>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Password Confirm</mat-label>
+            <input matInput type="password" [(ngModel)]="user.passwordConfirm" formControlName="passwordConfirm" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.passwordConfirm.errors }" />
+            <div *ngIf="submitted && f.passwordConfirm.errors" class="invalid-feedback">
+                <div *ngIf="f.passwordConfirm.errors.required">Password is required</div>
+                <div *ngIf="f.passwordConfirm.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+        </mat-form-field>
+      
+            <div class="form-group">
+                <button type="submit" mat-stroked-button color="accent" class="btn-block">SignUp</button>
+              </div>
+          
+        
+      </form>
+  </div>
+</div>

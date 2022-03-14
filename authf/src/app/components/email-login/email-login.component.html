@@ -1,0 +1,33 @@
+
+<div class="card">
+  <mat-card-header>
+    <mat-card-title>Log in</mat-card-title>
+  </mat-card-header>
+  <div class="card-body">
+ 
+      <form [formGroup]="form" (ngSubmit)="onSubmit()"  fxLayout="column">
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput  type="text"   formControlName="email" [(ngModel)]="credentials.email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+            </div>
+             
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+              <input  matInput type="password" formControlName="password" [(ngModel)]="credentials.password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+              </div>
+            </mat-form-field>
+          <div class="form-group">
+            <button mat-stroked-button color="accent" class="btn-block">Login</button>
+          </div>
+       <b (click)="openDialog()"> forgot password ?</b>
+      
+        </form>
+           
+  </div>
+</div>
