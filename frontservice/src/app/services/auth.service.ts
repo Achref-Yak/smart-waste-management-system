@@ -9,7 +9,7 @@ import { User } from '../interfaces/user.interface';
 import { LocalStorageService } from './local-storage.service';
 import { UtilsService } from './utils.service';
 import { Router } from '@angular/router';
-import { SocialAuthService } from 'angularx-social-login';
+
 
 interface LoginResponse {
   token: string;
@@ -26,7 +26,6 @@ export class AuthService {
   data = this.dataSource.asObservable();
   constructor(private http: HttpClient,
               private localStorageService: LocalStorageService,
-              private authService: SocialAuthService,
               private router: Router) { }
 
 
