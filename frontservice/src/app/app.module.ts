@@ -14,14 +14,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-import {
-  GoogleLoginProvider,
-  FacebookLoginProvider
-} from 'angularx-social-login';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 
@@ -36,7 +32,8 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     LogoutComponent,
     ForgotpasswordComponent,
     ForgotpasswordemailComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AboutusComponent,
    ],
   imports: [
     BrowserModule,
@@ -47,7 +44,6 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SocialLoginModule,
     FlexLayoutModule,
     MatDialogModule,
     ToastrModule.forRoot(), // ToastrModule added
@@ -61,24 +57,6 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true,
     
     },
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '206839759126-4fi5aq1gngv3grhic38u46l7f8kviot6.apps.googleusercontent.com'
-            )
-          },
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('clientId')
-          }
-        ]
-      } as SocialAuthServiceConfig,
-    }
   ],
   entryComponents: [LoginComponent,ForgotpasswordemailComponent],
   bootstrap: [AppComponent],
