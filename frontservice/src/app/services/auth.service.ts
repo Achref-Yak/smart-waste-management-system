@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 
