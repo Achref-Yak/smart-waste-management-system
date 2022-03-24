@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Add Employee Form</h1>
+<div mat-dialog-content>
+      <form [formGroup]="productForm" >
+        <mat-form-field appearance="outline">
+          <mat-label>Name&LastName</mat-label>
+          <input formControlName="employeeName" matInput placeholder="Name&LastName">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>CIN</mat-label>
+          <input formControlName="employeeCIN" matInput placeholder="CIN">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input formControlName="employeeEmail" matInput placeholder="Email">
+        </mat-form-field>
+
+
+        <label for=""><h1>Job</h1></label>
+        <mat-radio-group formControlName="employeeJob"  class="example-radio-group">
+          <mat-radio-button class="example-radio-button" *ngFor="let job of jobList" [value]="job">
+            {{job}}
+
+          </mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Choose a date</mat-label>
+          <input formControlName="date" matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Salary</mat-label>
+          <input formControlName="employeeSalary" matInput type="number" placeholder="Salary">
+        </mat-form-field>
+
+
+      </form>
+
+
+</div>
+
+<div mat-dialog-actions [align]="'end'" >
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addProduct()">{{actionBtn}}</button>
+</div>

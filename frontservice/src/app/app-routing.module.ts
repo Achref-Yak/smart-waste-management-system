@@ -11,13 +11,13 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { AuthGuardService } from './services/auth-guard.service';
 import { HomeGuardService } from './services/home-auth-guard';
 import { MapComponent } from './components/map/map.component';
- 
-
+import { EmployeesComponent } from './components/employees/employees.component';
+import { DashboardMainComponent } from './components/dashboard-main/dashboard-main.component';
 export const dashboardRoutes  = [
   {
-    path: 'profile', // child route path
-    component: ProfileComponent, // child route component that the router renders
-    label: 'profile',
+    path: 'employees', // child route path
+    component: EmployeesComponent, // child route component that the router renders
+    label: 'employees',
   
   },
   {
@@ -52,7 +52,7 @@ export const routes  = [{
 
 {
   path: 'admin-dashboard',
-  component: AdminDashboardComponent,
+  component: DashboardMainComponent,
   canActivate: [HomeGuardService],
   label: 'admin',
   children: dashboardRoutes,
