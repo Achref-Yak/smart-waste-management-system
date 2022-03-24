@@ -18,10 +18,14 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { MapComponent } from './components/map/map.component';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { DialogComponent } from './components/employees/dialog/dialog/dialog.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { DashboardMainComponent } from './components/dashboard-main/dashboard-main.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-
-
-
+import {NglTileLayerModule} from 'angular-leaflet';
+import {NglCoreModule} from 'angular-leaflet';
 @NgModule({
   declarations: [	
     AppComponent,
@@ -33,7 +37,13 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     ForgotpasswordComponent,
     ForgotpasswordemailComponent,
     AdminDashboardComponent,
+    MapComponent,
     AboutusComponent,
+    EmployeesComponent,
+    DialogComponent,
+    SidenavComponent,
+    DashboardMainComponent,
+
    ],
   imports: [
     BrowserModule,
@@ -46,6 +56,9 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatDialogModule,
+    NglTileLayerModule,
+    NglCoreModule,
+    
     ToastrModule.forRoot(), // ToastrModule added
   ],
  
