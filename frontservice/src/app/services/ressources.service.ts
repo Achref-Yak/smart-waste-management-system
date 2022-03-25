@@ -21,4 +21,22 @@ export class RessourcesService {
   deleteProduct(id:number){
     return this.http.delete<any>("http://localhost:3000/productList/"+id);
   }
+
+
+
+
+  postTruck(data : any){
+    return this.http.post<any>("http://localhost:3000/truckList/",data);
+  }
+  getTruck(){
+    return this.http.get<any>("http://localhost:3000/truckList/");
+  }
+  putTruck(data:any, id : number){
+    return this.http.put<any>("http://localhost:3000/truckList/"+id, data);
+
+  }
+  deleteTruck(id:number){
+    return this.http.delete<any>("http://localhost:3000/truckList/"+id);
+  }
 }
+

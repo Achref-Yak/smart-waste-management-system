@@ -13,12 +13,19 @@ import { HomeGuardService } from './services/home-auth-guard';
 import { MapComponent } from './components/map/map.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { DashboardMainComponent } from './components/dashboard-main/dashboard-main.component';
+import {TruckComponent} from "./components/truck/truck.component";
 export const dashboardRoutes  = [
   {
     path: 'employees', // child route path
     component: EmployeesComponent, // child route component that the router renders
     label: 'employees',
-  
+
+  },
+  {
+    path: 'trucks', // child route path
+    component: TruckComponent, // child route component that the router renders
+    label: 'trucks',
+
   },
   {
   path: 'map', // child route path
@@ -30,7 +37,6 @@ export const dashboardRoutes  = [
 export const routes  = [{
   path: '',
   component: HomeComponent,
- 
  // canActivate: [AuthGuardService]
 },
 {
