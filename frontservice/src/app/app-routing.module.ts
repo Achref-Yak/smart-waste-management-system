@@ -37,7 +37,7 @@ export const dashboardRoutes  = [
 export const routes  = [{
   path: '',
   component: HomeComponent,
-  // canActivate: [AuthGuardService]
+ // canActivate: [AuthGuardService]
 },
 {
   path: 'forgotpassword',
@@ -47,7 +47,7 @@ export const routes  = [{
 {
   path: 'profile',
   component: ProfileComponent,
-  // canActivate: [HomeGuardService],
+  //canActivate: [HomeGuardService],
   label: 'profile',
 },
 {
@@ -59,7 +59,7 @@ export const routes  = [{
 {
   path: 'admin-dashboard',
   component: DashboardMainComponent,
-  // canActivate: [HomeGuardService],
+ // canActivate: [HomeGuardService],
   label: 'admin',
   children: dashboardRoutes,
 }
