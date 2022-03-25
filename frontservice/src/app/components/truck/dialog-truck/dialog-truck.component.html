@@ -1,0 +1,56 @@
+<h1 mat-dialog-title>Add Truck Form</h1>
+<div mat-dialog-content>
+  <form [formGroup]="truckForm" >
+    <mat-form-field appearance="outline">
+      <mat-label>RegistrationNumber</mat-label>
+      <input formControlName="regNumber" matInput placeholder="RegistrationNumber">
+    </mat-form-field>
+
+    <label for=""><h1>TruckBrand</h1></label>
+    <mat-radio-group formControlName="truckBrand"  class="example-radio-group">
+      <mat-radio-button class="example-radio-button" *ngFor="let truck of truckList" [value]="truck">
+        {{truck}}
+
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+      <mat-label>TankVolume</mat-label>
+      <input formControlName="tankVolume" matInput type="number" placeholder="TankVolume">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>FirstDriver</mat-label>
+      <input formControlName="firstDriver" matInput placeholder="FirstDriver">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>SecondDriver</mat-label>
+      <input formControlName="secondDriver" matInput placeholder="SecondDriver">
+    </mat-form-field>
+
+
+
+
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Choose a date</mat-label>
+      <input formControlName="date" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+
+
+  </form>
+
+
+</div>
+
+<div mat-dialog-actions [align]="'end'" >
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addTruck()">{{actionBtnTruck}}</button>
+</div>
+

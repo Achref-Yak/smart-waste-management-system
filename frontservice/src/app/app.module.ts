@@ -26,8 +26,10 @@ import { DashboardMainComponent } from './components/dashboard-main/dashboard-ma
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import {NglTileLayerModule} from 'angular-leaflet';
 import {NglCoreModule} from 'angular-leaflet';
+import { TruckComponent } from './components/truck/truck.component';
+import { DialogTruckComponent } from './components/truck/dialog-truck/dialog-truck.component';
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
@@ -43,6 +45,10 @@ import {NglCoreModule} from 'angular-leaflet';
     DialogComponent,
     SidenavComponent,
     DashboardMainComponent,
+    TruckComponent,
+    DialogTruckComponent,
+
+
 
    ],
   imports: [
@@ -58,17 +64,17 @@ import {NglCoreModule} from 'angular-leaflet';
     MatDialogModule,
     NglTileLayerModule,
     NglCoreModule,
-    
+
     ToastrModule.forRoot(), // ToastrModule added
   ],
- 
+
   providers: [
     {
       provide: MatDialogRef,
       useValue: {}
     },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true,
-    
+
     },
   ],
   entryComponents: [LoginComponent,ForgotpasswordemailComponent],
