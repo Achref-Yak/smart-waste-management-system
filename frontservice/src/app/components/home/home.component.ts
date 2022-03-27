@@ -1,5 +1,7 @@
+import { EmailSignupComponent } from './../email-signup/email-signup.component';
 import { Component, OnInit } from '@angular/core';
-
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { LoginComponent } from '../email-login/email-login.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,15 +10,21 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit  {
 
   login = 0;
-  constructor()
+  constructor(public dialog: MatDialog)
   {}
   ngOnInit(): void {
-    
-  }
 
-  toggleLogin()
-  {
-    this.login = 1 - this.login;
   }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '250px',
 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
 }
+
+

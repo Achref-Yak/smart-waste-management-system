@@ -1,4 +1,5 @@
 var createError = require('http-errors');
+const jsonServer = require('json-server');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -9,6 +10,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 app.use(cors());
+app.use(jsonServer.bodyParser);
 app.options('*', cors()) 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

@@ -38,5 +38,24 @@ export class RessourcesService {
   deleteTruck(id:number){
     return this.http.delete<any>("http://localhost:3000/truckList/"+id);
   }
+
+
+
+
+
+
+  postTrush(data : any){
+    return this.http.post<any>("http://localhost:3000/trushList/",data);
+  }
+  getTrush(){
+    return this.http.get<any>("http://localhost:3000/trushList/");
+  }
+  putTrush(data:any, id : number){
+    return this.http.put<any>("http://localhost:3000/trushList/"+id, data);
+
+  }
+  deleteTrush(id:number){
+    return this.http.delete<any>("http://localhost:3000/trushList/"+id);
+  }
 }
 

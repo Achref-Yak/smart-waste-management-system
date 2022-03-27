@@ -28,6 +28,11 @@ import {NglTileLayerModule} from 'angular-leaflet';
 import {NglCoreModule} from 'angular-leaflet';
 import { TruckComponent } from './components/truck/truck.component';
 import { DialogTruckComponent } from './components/truck/dialog-truck/dialog-truck.component';
+import { TrushComponent } from './components/trush/trush.component';
+import { DialogTrushComponent } from './components/trush/dialog-trush/dialog-trush.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginParentComponent } from './components/login-parent/login-parent.component';
+import { MarkerService } from './marker.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,12 +51,13 @@ import { DialogTruckComponent } from './components/truck/dialog-truck/dialog-tru
     SidenavComponent,
     DashboardMainComponent,
     TruckComponent,
-    DialogTruckComponent,
-
-
+    LoginParentComponent,
+    TrushComponent,
+    DialogTrushComponent,
+    DialogTruckComponent
 
    ],
-  imports: [
+   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularMaterialModule,
@@ -64,13 +70,14 @@ import { DialogTruckComponent } from './components/truck/dialog-truck/dialog-tru
     MatDialogModule,
     NglTileLayerModule,
     NglCoreModule,
-
+    NgbModule,
     ToastrModule.forRoot(), // ToastrModule added
   ],
-
   providers: [
+    MarkerService,
     {
       provide: MatDialogRef,
+
       useValue: {}
     },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true,

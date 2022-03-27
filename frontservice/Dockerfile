@@ -1,19 +1,23 @@
 FROM node:14
 
-# Create app directory
-WORKDIR /usr/src/app
+RUN apt-get update && apt-get install
+# set working directory
+WORKDIR /app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
+# install and cache app dependencies
+COPY package.json /app/package.json
+RUN npm install -g @angular/cli@12.0.0
+RUN npm install json-server
+RUN npm install --force
 
-# Bundle app source
-COPY . .
 
-EXPOSE 8080
-CMD [ "node", "server.js" ]
+# add app
+COPY . /app
+
+# start app
+CMD ng serve --host 0.0.0.0
+
+EXPOSE 4200
