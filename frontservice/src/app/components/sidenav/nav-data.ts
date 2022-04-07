@@ -1,4 +1,16 @@
+
+declare interface RouteInfo {
+  routeLink: string;
+  icon: string;
+  label: string;
+
+}
 export const navbarData = [
+  {
+    routeLink :'.',
+    icon : 'fal fa-home',
+    label : 'Dashboard'
+  },
   {
     routeLink :'map',
     icon : 'fal fa-map',
@@ -18,7 +30,12 @@ export const navbarData = [
   },
   {
     routeLink :'trushs',
-    icon : 'fal fa-trash-can',
-    label : 'Trushs'
+    icon : 'fal fa-dumpster',
+    label : 'Trash'
+  },
+ {
+    routeLink :'',
+    icon : 'fal fa-sign-out',
+    label : 'Logout'
   },
 ] ;

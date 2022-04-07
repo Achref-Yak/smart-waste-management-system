@@ -14,11 +14,11 @@ export class RessourcesService {
   getProduct(){
     return this.http.get<any>("http://localhost:3000/productList/");
   }
-  putProduct(data:any,id : number){
+  putProduct(data:any,id : any){
     return this.http.put<any>("http://localhost:3000/productList/"+id, data);
 
   }
-  deleteProduct(id:number){
+  deleteProduct(id:any){
     return this.http.delete<any>("http://localhost:3000/productList/"+id);
   }
 

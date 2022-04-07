@@ -29,7 +29,7 @@
             "styles": [
               "node_modules/leaflet/dist/leaflet.css",
               "src/styles.css",
-              
+
               "node_modules/ngx-toastr/toastr.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
@@ -79,7 +79,7 @@
               "browserTarget": "authf:build:development"
             }
           },
-          
+
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
@@ -101,7 +101,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",     
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
