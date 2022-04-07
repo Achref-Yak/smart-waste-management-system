@@ -40,6 +40,7 @@ export class DialogComponent implements OnInit {
     if(!this.editData){
       if(this.productForm.valid){
         this.api.postProduct(this.productForm.value)
+
           .subscribe({
             next:(res)=>{
               alert("Product added successfully")
@@ -58,7 +59,8 @@ export class DialogComponent implements OnInit {
     }
   }
   updateProduct(){
-    this.api.putProduct(this.productForm.value,this.editData.id)
+    console.log(this.editData._id);
+    this.api.putProduct(this.productForm.value,this.editData._id)
       .subscribe({
         next:(res)=>{
           alert("Product updated Successfully");
@@ -73,6 +75,7 @@ export class DialogComponent implements OnInit {
 
   }
   deleteProduct(){
-    this.api.deleteProduct(this.editData.id)
+    this.api.deleteProduct(this.editData._id)
+    console.log(this.editData)
   }
 }

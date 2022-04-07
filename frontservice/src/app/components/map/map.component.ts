@@ -13,7 +13,7 @@ export class MapComponent implements OnInit {
   lat = 36.7948008;
     lng = 10.0031931;
 
- 
+
   constructor() { }
   ngOnInit() {
     const map = new mapboxgl.Map({
@@ -25,10 +25,10 @@ export class MapComponent implements OnInit {
     });
     var airportIcon = document.createElement('div');
     // Add map controls
- 
 
- 
- 
+
+
+
             var airportPopup = new mapboxgl.Popup({
               anchor: 'bottom',
               offset: [0, -64] // height - shadow
@@ -44,5 +44,5 @@ export class MapComponent implements OnInit {
             .addTo(map);
   }
 
-  
+
 }

@@ -16,15 +16,31 @@ export class HomeComponent implements OnInit  {
 
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(LoginComponent, {
+    const dialogRef = this.dialog.open(EmailSignupComponent, {
       width: '250px',
 
     });
+
 
     dialogRef.afterClosed().subscribe(result => {
 
     });
   }
+  openDialogLogin(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '250px',
+
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
+
+
+
+
 }
 
 

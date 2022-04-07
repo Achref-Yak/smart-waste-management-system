@@ -54,3 +54,20 @@
   <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addTruck()">{{actionBtnTruck}}</button>
 </div>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/geojson/0.5.0/geojson.min.js"></script>
+<script>
+  const createGeoJSON = () => {
+    const data = [
+      {
+        lat: document.getElementById("latitude").value,
+        lng: document.getElementById("longitude").value
+      }
+    ];
+    data[0][document.getElementById("propertyname1").value] = document.getElementById("propertyvalue1").value;
+    data[0][document.getElementById("propertyname2").value] = document.getElementById("propertyvalue2").value;
+    const dataGeoJSON = GeoJSON.parse(data, { Point: ["lat", "lng"] });
+    document.getElementById("output").value = JSON.stringify(dataGeoJSON, null, 4);
+  }
+  createGeoJSON();
+</script>
