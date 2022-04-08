@@ -26,6 +26,7 @@ import { DashboardMainComponent } from './components/dashboard-main/dashboard-ma
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import {NglTileLayerModule} from 'angular-leaflet';
 import {NglCoreModule} from 'angular-leaflet';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [	
     AppComponent,
@@ -58,7 +59,7 @@ import {NglCoreModule} from 'angular-leaflet';
     MatDialogModule,
     NglTileLayerModule,
     NglCoreModule,
-    
+    NgbModule,
     ToastrModule.forRoot(), // ToastrModule added
   ],
  
