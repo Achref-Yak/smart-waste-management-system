@@ -33,6 +33,7 @@ import { DialogTrushComponent } from './components/trush/dialog-trush/dialog-tru
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginParentComponent } from './components/login-parent/login-parent.component';
 import { MarkerService } from './marker.service';
+
 @NgModule({
   declarations: [
     AppComponent,
