@@ -64,6 +64,7 @@ export class EmployeesComponent implements OnInit {
   }
   deleteProduct(id:number){
     this.api.deleteProduct(id)
+
       .subscribe({
         next:(res)=>{
           alert("Product Deleted Successfully")

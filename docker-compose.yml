@@ -1,0 +1,27 @@
+version: '3.0' # specify docker-compose version
+ 
+# Define the services/ containers to be run
+services:
+ angular: # name of the first service
+  build: frontservice # specify the directory of the Dockerfile
+  ports:
+  - "4200:4200" # specify port mapping
+  network_mode: "host"
+ 
+ auth: # name of the second service
+  build: authservice # specify the directory of the Dockerfile
+  ports:
+  - "4112:4112" #specify ports mapping
+  network_mode: "host"
+
+ gateway: # name of the second service
+  build: api-gateway # specify the directory of the Dockerfile
+  ports:
+  - "4113:4113" #specify ports mapping
+  network_mode: "host"
+
+ jsonserver: # name of the second service
+  build: jsonserver # specify the directory of the Dockerfile
+  ports:
+  - "3000:3000" #specify ports mapping
+  network_mode: "host"

@@ -26,9 +26,16 @@ import { DashboardMainComponent } from './components/dashboard-main/dashboard-ma
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import {NglTileLayerModule} from 'angular-leaflet';
 import {NglCoreModule} from 'angular-leaflet';
+import { TruckComponent } from './components/truck/truck.component';
+import { DialogTruckComponent } from './components/truck/dialog-truck/dialog-truck.component';
+import { TrushComponent } from './components/trush/trush.component';
+import { DialogTrushComponent } from './components/trush/dialog-trush/dialog-trush.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginParentComponent } from './components/login-parent/login-parent.component';
+import { MarkerService } from './marker.service';
+
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
@@ -44,9 +51,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DialogComponent,
     SidenavComponent,
     DashboardMainComponent,
+    TruckComponent,
+    LoginParentComponent,
+    TrushComponent,
+    DialogTrushComponent,
+    DialogTruckComponent
 
    ],
-  imports: [
+   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularMaterialModule,
@@ -62,14 +74,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     ToastrModule.forRoot(), // ToastrModule added
   ],
- 
   providers: [
+    MarkerService,
     {
       provide: MatDialogRef,
+
       useValue: {}
     },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true,
-    
+
     },
   ],
   entryComponents: [LoginComponent,ForgotpasswordemailComponent],

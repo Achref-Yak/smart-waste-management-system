@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmailSignupComponent } from './components/email-signup/email-signup.component';
 
@@ -13,12 +13,27 @@ import { HomeGuardService } from './services/home-auth-guard';
 import { MapComponent } from './components/map/map.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { DashboardMainComponent } from './components/dashboard-main/dashboard-main.component';
+import {TruckComponent} from "./components/truck/truck.component";
+import {LoginParentComponent} from "./components/login-parent/login-parent.component";
+import {TrushComponent} from "./components/trush/trush.component";
 export const dashboardRoutes  = [
   {
     path: 'employees', // child route path
     component: EmployeesComponent, // child route component that the router renders
     label: 'employees',
-  
+
+  },
+  {
+    path: 'trucks', // child route path
+    component: TruckComponent, // child route component that the router renders
+    label: 'trucks',
+
+  },
+  {
+    path: 'trushs', // child route path
+    component: TrushComponent, // child route component that the router renders
+    label: 'trushs',
+
   },
   {
   path: 'map', // child route path
@@ -30,7 +45,6 @@ export const dashboardRoutes  = [
 export const routes  = [{
   path: '',
   component: HomeComponent,
- 
  // canActivate: [AuthGuardService]
 },
 {
@@ -48,6 +62,11 @@ export const routes  = [{
   path: 'aboutus',
   component: AboutusComponent,
   label: 'aboutus',
+},
+{
+  path: 'welcome',
+  component: LoginParentComponent,
+  label: 'welcome'
 },
 
 {
