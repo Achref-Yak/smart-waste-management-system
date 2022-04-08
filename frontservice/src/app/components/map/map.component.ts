@@ -1,48 +1,32 @@
-import { environment } from '../../../environments/environment';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import * as mapboxgl from 'mapbox-gl';
+import { Component, AfterViewInit } from '@angular/core';
+import * as L from 'leaflet';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
-  map: mapboxgl.Map;
-  private flyToMarker: mapboxgl.Marker;
-  style = 'mapbox://styles/mapbox/streets-v11';
-  lat = 36.7948008;
-    lng = 10.0031931;
+export class MapComponent implements AfterViewInit {
+  private map;
 
-
-  constructor() { }
-  ngOnInit() {
-    const map = new mapboxgl.Map({
-      accessToken: environment.mapAc,
-      container: 'map',
-      style: this.style,
-        zoom: 13,
-        center: [this.lng, this.lat],
+  private initMap(): void {
+    this.map = L.map('map', {
+      center: [ 39.8282, -98.5795 ],
+      zoom: 3
     });
-    var airportIcon = document.createElement('div');
-    // Add map controls
 
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      minZoom: 3,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
 
-
-
-            var airportPopup = new mapboxgl.Popup({
-              anchor: 'bottom',
-              offset: [0, -64] // height - shadow
-            })
-            .setText('Zürich Airport');
-
-            var airport = new mapboxgl.Marker(airportIcon, {
-              anchor: 'bottom',
-              offset: [0, 6]
-            })
-            .setLngLat([36.7948008,10.0031931])
-            .setPopup(airportPopup)
-            .addTo(map);
+    tiles.addTo(this.map);
   }
 
+  constructor() { }
 
+  ngAfterViewInit(): void {
+    this.initMap();
+  }
 }
