@@ -15,8 +15,8 @@ export class MapComponent implements AfterViewInit {
   }> = []
   private initMap(): void {
     this.map = L.map('map', {
-      center: [ 39.8282, -98.5795 ],
-      zoom: 3
+      center: [ 36.898487, 10.188072 ], 
+      zoom: 40
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -26,7 +26,10 @@ export class MapComponent implements AfterViewInit {
     });
 
     tiles.addTo(this.map);
-    
+    this.map.on('click', function(e) {
+      alert("You clicked the map at " + e.latlng.toString());
+     
+     } ); 
  
  // Add custom icon
  var icon = L.icon({
@@ -34,12 +37,11 @@ export class MapComponent implements AfterViewInit {
  
   iconSize: [30, 30], 
  
- 
 });
 
 let point = {
-  "lat": 10.1815,
-  "lon": 36.8065,
+  "lat":10.184317 ,    
+  "lon": 36.898711,
   "message": "level: high"
 }
 let point1 = {
@@ -52,8 +54,6 @@ let point2 = {
   "lon": 35.8065,
   "message": "level: high"
 }
-
- 
 
 this.markers.push(point);
 this.markers.push(point1);
@@ -74,11 +74,8 @@ this.markers.forEach(element => {
   marker.bindPopup(element.message);
   marker.addTo(this.map);
 
-  
 });
-
   }
-
   constructor() { }
 
   ngAfterViewInit(): void {

@@ -3,8 +3,10 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 // const stuffRoutes = require('./routes/stuff');
 // const userRoutes = require('./routes/user');
-const path = require('path');
+var path = require('path');
 const employeeRoutes = require('./routes/employee')
+
+const truckRoutes = require('./routes/truck')
 
 
 const app = express();
@@ -21,10 +23,14 @@ app.use((req, res, next) => {
     next();
 });
 
+
+
 app.use(bodyParser.json());
 // app.use('/images', express.static(path.join(__dirname, 'images')));
 // app.use('/api/stuff', stuffRoutes);
 // app.use('/api/auth', userRoutes);
 app.use('/productList', employeeRoutes);
+
+app.use('/truckList', truckRoutes);
 
 module.exports = app;
