@@ -1,6 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import * as geojson from 'geojson';
+import { TrashService } from 'src/app/services/Trash.service';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -8,7 +9,9 @@ import * as geojson from 'geojson';
 })
 export class MapComponent implements AfterViewInit {
   private map;
+  sensorsData
   markers: Array<{
+    id: string;
     lat: number,
     lon: number,
     message: string
@@ -28,6 +31,46 @@ export class MapComponent implements AfterViewInit {
     tiles.addTo(this.map);
     
  
+
+
+
+  }
+
+  constructor(private trashService: TrashService) { }
+
+  getAllAWStrash()
+  {
+    this.trashService.getAwsTrash().subscribe(data => {
+      console.log(data);
+      this.sensorsData = data;
+      
+let point = {
+  "id": "9",
+  "lat": 10.1815,
+  "lon": 36.8065,
+  "message": "level: high"
+}
+ 
+ 
+
+this.markers.push(point);
+ 
+
+var i=0;
+console.log(this.sensorsData)
+
+this.markers.forEach(element => {
+ 
+  if(element.id==this.sensorsData[i].id)
+  {
+    const message = "distance: " + this.sensorsData[i].distance + "</br> gaz : "  + this.sensorsData[i].gaz + "</br> " ;
+    element.message = message
+
+  }
+  i++
+
+});
+
  // Add custom icon
  var icon = L.icon({
   iconUrl: 'assets/marker-icon-2x.png',
@@ -36,29 +79,6 @@ export class MapComponent implements AfterViewInit {
  
  
 });
-
-let point = {
-  "lat": 10.1815,
-  "lon": 36.8065,
-  "message": "level: high"
-}
-let point1 = {
-  "lat": 10.1815,
-  "lon": 35.8065,
-  "message": "level: high"
-}
-let point2 = {
-  "lat": 9.1815,
-  "lon": 35.8065,
-  "message": "level: high"
-}
-
- 
-
-this.markers.push(point);
-this.markers.push(point1);
-this.markers.push(point2);
-
 this.markers.forEach(element => {
 
   var geojsonPoint: geojson.Point = {
@@ -76,12 +96,11 @@ this.markers.forEach(element => {
 
   
 });
-
+    });
   }
 
-  constructor() { }
-
   ngAfterViewInit(): void {
+    this.getAllAWStrash();
     this.initMap();
   }
 }

@@ -5,6 +5,7 @@ import {RessourcesService} from "../../services/ressources.service";
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { TrashService } from 'src/app/services/Trash.service';
 
 @Component({
   selector: 'app-trush',
@@ -15,16 +16,19 @@ export class TrushComponent implements OnInit {
   title = 'Angular13Crud';
   displayedColumns: string[] = ['lontitude','latitude', 'Size', 'Date', 'action'];
   dataSource!: MatTableDataSource<any>;
+  trash
+  positions = [{id: "", lat: "", lon: ""}] 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
 
 
-  constructor(private dialog : MatDialog, private api : RessourcesService) {
+  constructor(private dialog : MatDialog, private api : RessourcesService, private trashService: TrashService) {
   }
 
   ngOnInit(): void {
+    this.getAllAWStrash();
     this.getAllTrushs();
   }
   openDialog() {
@@ -35,6 +39,15 @@ export class TrushComponent implements OnInit {
         this.getAllTrushs();
       }
     })
+  }
+
+  getAllAWStrash()
+  {
+    this.trashService.getAwsTrash().subscribe(data => {
+      console.log(data);
+      this.trash = data;
+      
+    });
   }
   getAllTrushs(){
     this.api.getTrush()
