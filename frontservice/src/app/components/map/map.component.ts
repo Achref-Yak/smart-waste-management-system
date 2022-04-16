@@ -30,10 +30,6 @@ export class MapComponent implements AfterViewInit {
 
     tiles.addTo(this.map);
     
- 
-
-
-
   }
 
   constructor(private trashService: TrashService) { }

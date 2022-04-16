@@ -16,6 +16,7 @@ import { DashboardMainComponent } from './components/dashboard-main/dashboard-ma
 import {TruckComponent} from "./components/truck/truck.component";
 import {LoginParentComponent} from "./components/login-parent/login-parent.component";
 import {TrushComponent} from "./components/trush/trush.component";
+import {ClientComponent} from "./components/client/client.component";
 export const dashboardRoutes  = [
   {
     path: 'employees', // child route path
@@ -33,6 +34,12 @@ export const dashboardRoutes  = [
     path: 'trushs', // child route path
     component: TrushComponent, // child route component that the router renders
     label: 'trushs',
+
+  },
+  {
+    path: 'clients', // child route path
+    component: ClientComponent, // child route component that the router renders
+    label: 'clients',
 
   },
   {
