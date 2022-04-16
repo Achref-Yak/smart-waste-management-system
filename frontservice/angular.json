@@ -72,12 +72,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "styles": ["../node_modules/leaflet/dist/leaflet.css", "styles.css"],
+          
           "configurations": {
             "production": {
               "browserTarget": "authf:build:production"
             },
             "development": {
-              "browserTarget": "authf:build:development"
+              "browserTarget": "authf:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
 
