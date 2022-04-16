@@ -17,4 +17,4 @@ RUN npm install --force
 COPY . .
 
 EXPOSE 3000
-CMD [ "node", "json-server.js" ]
+CMD [ "node", "app.js" ]
