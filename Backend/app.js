@@ -10,7 +10,7 @@ const truckRoutes = require('./routes/truck')
 
 
 const app = express();
-mongoose.connect('mongodb://admin:password@127.0.0.1:27017',
+mongoose.connect('mongodb+srv://wael1:SBWxkMCNrjEuW2rm@cluster0.k3wgl.mongodb.net/mrclean?retryWrites=true&w=majority',
     { useNewUrlParser: true,
         useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -22,8 +22,6 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
-
-
 
 app.use(bodyParser.json());
 // app.use('/images', express.static(path.join(__dirname, 'images')));

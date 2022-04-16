@@ -10,9 +10,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 # install and cache app dependencies
 COPY package.json /app/package.json
 RUN npm install -g @angular/cli@12.0.0
-RUN npm install json-server
+RUN npm install json-server --force
 RUN npm install --force
-
 
 # add app
 COPY . /app
