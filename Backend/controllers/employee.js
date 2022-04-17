@@ -23,6 +23,7 @@ exports.createEmp = (req, res, next) => {
 
 
 exports.modifyEmp = (req, res, next) => {
+    console.log(req.body);
     const employee = new Employee({
         _id :  req.params.id,
         employeeName: req.body.employeeName,

@@ -1,16 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-// const stuffRoutes = require('./routes/stuff');
-// const userRoutes = require('./routes/user');
 var path = require('path');
 const employeeRoutes = require('./routes/employee')
-
 const truckRoutes = require('./routes/truck')
+const trashRoutes = require ('./routes/trash')
 
 
 const app = express();
-mongoose.connect('mongodb+srv://wael1:SBWxkMCNrjEuW2rm@cluster0.k3wgl.mongodb.net/mrclean?retryWrites=true&w=majority',
+mongoose.connect('mongodb://admin:password@127.0.0.1:27017',
     { useNewUrlParser: true,
         useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -28,7 +26,6 @@ app.use(bodyParser.json());
 // app.use('/api/stuff', stuffRoutes);
 // app.use('/api/auth', userRoutes);
 app.use('/productList', employeeRoutes);
-
 app.use('/truckList', truckRoutes);
-
+app.use('/trashList',trashRoutes);
 module.exports = app;

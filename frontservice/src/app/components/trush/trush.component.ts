@@ -14,10 +14,10 @@ import { TrashService } from 'src/app/services/Trash.service';
 })
 export class TrushComponent implements OnInit {
   title = 'Angular13Crud';
-  displayedColumns: string[] = ['lontitude','latitude', 'Size', 'Date', 'action'];
+  displayedColumns: string[] = ['_id','longitude','latitude', 'size', 'date', 'action'];
   dataSource!: MatTableDataSource<any>;
   trash
-  positions = [{id: "", lat: "", lon: ""}] 
+  positions = [{id: "", lat: "", lon: ""}]
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -46,7 +46,7 @@ export class TrushComponent implements OnInit {
     this.trashService.getAwsTrash().subscribe(data => {
       console.log(data);
       this.trash = data;
-      
+
     });
   }
   getAllTrushs(){
@@ -74,7 +74,7 @@ export class TrushComponent implements OnInit {
       }
     })
   }
-  deleteTrush(id:number){
+  deleteTrush(id:any){
     this.api.deleteTrush(id)
       .subscribe({
         next:(res)=>{

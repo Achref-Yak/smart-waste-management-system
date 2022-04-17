@@ -2,6 +2,8 @@ import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import * as geojson from 'geojson';
 import { TrashService } from 'src/app/services/Trash.service';
+import {RessourcesService} from "../../services/ressources.service";
+import {debounce} from "rxjs";
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -9,7 +11,8 @@ import { TrashService } from 'src/app/services/Trash.service';
 })
 export class MapComponent implements AfterViewInit {
   private map;
-  sensorsData
+  sensorsData;
+  trash
   markers: Array<{
     id: string;
     lat: number,
@@ -29,55 +32,66 @@ export class MapComponent implements AfterViewInit {
     });
 
     tiles.addTo(this.map);
-    
- 
+
+
 
 
 
   }
 
-  constructor(private trashService: TrashService) { }
+  constructor(private trashService: TrashService,private api : RessourcesService ) { }
 
   getAllAWStrash()
   {
+    this.api.getTrush().subscribe(params =>{
+
+      this.trash = params;
+      console.log(this.trash[0]._id);
+    })
     this.trashService.getAwsTrash().subscribe(data => {
+
+
       console.log(data);
       this.sensorsData = data;
-      
+
 let point = {
   "id": "9",
-  "lat": 10.1815,
-  "lon": 36.8065,
+  "lat": 10.208476,
+  "lon": 36.701448,
   "message": "level: high"
 }
- 
- 
+
+
 
 this.markers.push(point);
- 
 
-var i=0;
-console.log(this.sensorsData)
+
+
 
 this.markers.forEach(element => {
- 
-  if(element.id==this.sensorsData[i].id)
+
+
+for (let i=0; i < this.sensorsData.length ; i++){
+  for (let j=0; j < this.trash.length ;j++){
+  if(this.trash[j]._id==this.sensorsData[i].id)
   {
     const message = "distance: " + this.sensorsData[i].distance + "</br> gaz : "  + this.sensorsData[i].gaz + "</br> " ;
     element.message = message
+    element.lat =this.trash[j].latitude;
+    element.lon = this.trash[j].longitude;
 
   }
-  i++
-
+  }
+}
 });
 
  // Add custom icon
  var icon = L.icon({
   iconUrl: 'assets/marker-icon-2x.png',
- 
-  iconSize: [30, 30], 
- 
- 
+
+  iconSize: [30, 30],
+
+
 });
 this.markers.forEach(element => {
 
@@ -94,7 +108,7 @@ this.markers.forEach(element => {
   marker.bindPopup(element.message);
   marker.addTo(this.map);
 
-  
+
 });
     });
   }
