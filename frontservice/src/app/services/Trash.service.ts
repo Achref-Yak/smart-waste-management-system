@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { trashsData } from '../constants/trashs-static-data';
+import { AWSTRASH } from '../interfaces/awstrash.interface';
 import { Trash } from '../models/Trash';
 
 @Injectable({
@@ -12,9 +15,13 @@ export class TrashService {
   trashs$: BehaviorSubject<Trash[]>;
   trashs: Array<Trash> = [];
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.trashs$ = new BehaviorSubject<Trash[]>([]);
     this.trashs = trashsData;
+  }
+  
+  getAwsTrash(){
+    return this.http.get<AWSTRASH[]>(`${environment.awsgettrash}`);
   }
 
   getAll() {

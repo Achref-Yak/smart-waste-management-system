@@ -1,31 +1,17 @@
 .map-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 30px;
-  }
-  
-  .map-frame {
-    border: 2px solid black;
-    height: 100%;
-  }
-  
-  #map {
-    height: 100%;
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0px;
+}
 
-  img{
-    max-width:100%;
-    max-height:100%;
-    }
+.map-frame {
+  border: 2px solid black;
+  height: 100%;
+}
 
-
-    .airport {
-        height: 69px;
-        width: 47px;
-        background-image: url(https://api.geoapify.com/v1/icon/?type=awesome&scaleFactor=2&color=%2372a2d4&size=x-large&icon=plane-departure&apiKey=YOUR_API_KEY);
-        background-size: contain;
-        cursor: pointer;
-      }
+#map {
+  height: 100%;
+}

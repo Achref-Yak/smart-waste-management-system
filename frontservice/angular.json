@@ -24,12 +24,13 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
+              "src/assets/marker-icon-2x.png",
               "src/assets"
             ],
             "styles": [
               "node_modules/leaflet/dist/leaflet.css",
               "src/styles.css",
-              
+
               "node_modules/ngx-toastr/toastr.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
@@ -71,15 +72,17 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "styles": ["../node_modules/leaflet/dist/leaflet.css", "styles.css"],
+          
           "configurations": {
             "production": {
               "browserTarget": "authf:build:production"
             },
             "development": {
-              "browserTarget": "authf:build:development"
+              "browserTarget": "authf:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
-          
+
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
@@ -97,11 +100,12 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
+              "src/assets/marker-icon-2x.png",
               "src/assets"
             ],
             "styles": [
               "src/styles.css",
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",     
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []

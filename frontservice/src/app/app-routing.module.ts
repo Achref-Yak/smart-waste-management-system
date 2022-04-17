@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmailSignupComponent } from './components/email-signup/email-signup.component';
 
@@ -14,6 +14,9 @@ import { MapComponent } from './components/map/map.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { DashboardMainComponent } from './components/dashboard-main/dashboard-main.component';
 import {TruckComponent} from "./components/truck/truck.component";
+import {LoginParentComponent} from "./components/login-parent/login-parent.component";
+import {TrushComponent} from "./components/trush/trush.component";
+import {ClientComponent} from "./components/client/client.component";
 export const dashboardRoutes  = [
   {
     path: 'employees', // child route path
@@ -28,6 +31,18 @@ export const dashboardRoutes  = [
 
   },
   {
+    path: 'trushs', // child route path
+    component: TrushComponent, // child route component that the router renders
+    label: 'trushs',
+
+  },
+  {
+    path: 'clients', // child route path
+    component: ClientComponent, // child route component that the router renders
+    label: 'clients',
+
+  },
+  {
   path: 'map', // child route path
   component: MapComponent, // child route component that the router renders
   label: 'map',
@@ -37,7 +52,7 @@ export const dashboardRoutes  = [
 export const routes  = [{
   path: '',
   component: HomeComponent,
-  // canActivate: [AuthGuardService]
+ // canActivate: [AuthGuardService]
 },
 {
   path: 'forgotpassword',
@@ -47,7 +62,7 @@ export const routes  = [{
 {
   path: 'profile',
   component: ProfileComponent,
-  // canActivate: [HomeGuardService],
+  //canActivate: [HomeGuardService],
   label: 'profile',
 },
 {
@@ -55,11 +70,16 @@ export const routes  = [{
   component: AboutusComponent,
   label: 'aboutus',
 },
+{
+  path: 'welcome',
+  component: LoginParentComponent,
+  label: 'welcome'
+},
 
 {
   path: 'admin-dashboard',
   component: DashboardMainComponent,
-  // canActivate: [HomeGuardService],
+ // canActivate: [HomeGuardService],
   label: 'admin',
   children: dashboardRoutes,
 }

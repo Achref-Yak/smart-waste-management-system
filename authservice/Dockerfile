@@ -17,4 +17,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 4112
-CMD [ "node", "start" ]
+CMD [ "npm", "start" ]
