@@ -32,11 +32,8 @@ export class MapComponent implements AfterViewInit {
     });
 
     tiles.addTo(this.map);
-
-
-    
-
-
+ 
+ 
   }
 
   constructor(private trashService: TrashService,private api : RessourcesService ) { }

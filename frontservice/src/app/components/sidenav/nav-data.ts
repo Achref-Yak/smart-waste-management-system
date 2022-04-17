@@ -33,6 +33,13 @@ export const navbarData = [
     icon : 'fal fa-dumpster',
     label : 'Trash'
   },
+
+  {
+    routeLink :'clients',
+    icon : 'fal fa-address-card',
+    label : 'Client'
+  },
+
  {
     routeLink :'',
     icon : 'fal fa-sign-out',
