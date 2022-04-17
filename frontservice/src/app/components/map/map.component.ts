@@ -34,7 +34,7 @@ export class MapComponent implements AfterViewInit {
     tiles.addTo(this.map);
 
 
-
+    
 
 
   }
