@@ -1,21 +1,25 @@
 <h1 mat-dialog-title>Add Trush Form</h1>
 <div mat-dialog-content>
-  <form [formGroup]="trushForm" >
+  <form [formGroup]="trashForm" >
     <label for=""><h1>Location</h1></label>
     <mat-form-field appearance="outline">
-      <mat-label>lontitude</mat-label>
-      <input formControlName="lontitude" matInput placeholder="lontitude">
+      <mat-label>id</mat-label>
+      <input formControlName="_id" matInput placeholder="_id">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Longitude</mat-label>
+      <input formControlName="longitude" matInput placeholder="longitude">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>latitude</mat-label>
+      <mat-label>Latitude</mat-label>
       <input formControlName="latitude" matInput placeholder="latitude">
     </mat-form-field>
 
     <label for=""><h1>Size</h1></label>
-    <mat-radio-group formControlName="Size"  class="example-radio-group">
-      <mat-radio-button class="example-radio-button" *ngFor="let Size of trushList" [value]="Size">
-        {{Size}}
+    <mat-radio-group formControlName="size"  class="example-radio-group">
+      <mat-radio-button class="example-radio-button" *ngFor="let size of trashList" [value]="size">
+        {{size}}
 
       </mat-radio-button>
     </mat-radio-group>
@@ -33,24 +37,24 @@
 
 <div mat-dialog-actions [align]="'end'" >
   <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addTrush()">{{actionBtnTrush}}</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addTrash()">{{actionBtnTrash}}</button>
 </div>
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/geojson/0.5.0/geojson.min.js"></script>
-        <script>
-            const createGeoJSON = () => {
-        const data = [
-            {
-                lat: document.getElementById("latitude").value,
-                lng: document.getElementById("longitude").value
-            }
-        ];
-        data[0][document.getElementById("propertyname1").value] = document.getElementById("propertyvalue1").value;
-        data[0][document.getElementById("propertyname2").value] = document.getElementById("propertyvalue2").value;
-        const dataGeoJSON = GeoJSON.parse(data, { Point: ["lat", "lng"] });
-        document.getElementById("output").value = JSON.stringify(dataGeoJSON, null, 4);
-    }
-    createGeoJSON();
-        </script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/geojson/0.5.0/geojson.min.js"></script>-->
+<!--        <script>-->
+<!--            const createGeoJSON = () => {-->
+<!--        const data = [-->
+<!--            {-->
+<!--                lat: document.getElementById("latitude").value,-->
+<!--                lng: document.getElementById("longitude").value-->
+<!--            }-->
+<!--        ];-->
+<!--        data[0][document.getElementById("propertyname1").value] = document.getElementById("propertyvalue1").value;-->
+<!--        data[0][document.getElementById("propertyname2").value] = document.getElementById("propertyvalue2").value;-->
+<!--        const dataGeoJSON = GeoJSON.parse(data, { Point: ["lat", "lng"] });-->
+<!--        document.getElementById("output").value = JSON.stringify(dataGeoJSON, null, 4);-->
+<!--    }-->
+<!--    createGeoJSON();-->
+<!--        </script>-->

@@ -31,7 +31,7 @@ export class RessourcesService {
   getTruck(){
     return this.http.get<any>("http://localhost:3000/truckList/");
   }
-  putTruck(data:any, id : number){
+  putTruck(data:any, id : any){
     return this.http.put<any>("http://localhost:3000/truckList/"+id, data);
 
   }
@@ -45,17 +45,17 @@ export class RessourcesService {
 
 
   postTrush(data : any){
-    return this.http.post<any>("http://localhost:3000/trushList/",data);
+    return this.http.post<any>("http://localhost:3000/trashList/",data);
   }
   getTrush(){
-    return this.http.get<any>("http://localhost:3000/trushList/");
+    return this.http.get<any>("http://localhost:3000/trashList/");
   }
-  putTrush(data:any, id : number){
-    return this.http.put<any>("http://localhost:3000/trushList/"+id, data);
+  putTrush(data:any, id : any){
+    return this.http.put<any>("http://localhost:3000/trashList/"+id, data);
 
   }
   deleteTrush(id:number){
-    return this.http.delete<any>("http://localhost:3000/trushList/"+id);
+    return this.http.delete<any>("http://localhost:3000/trashList/"+id);
   }
 
 

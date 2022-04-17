@@ -10,37 +10,39 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
 })
 export class DialogTrushComponent implements OnInit {
 
-  trushList = ["Small", "Meduim", "Big"]
-  trushForm !: FormGroup;
-  actionBtnTrush : string = "Save"
+  trashList = ["Small", "Medium", "Big"]
+  trashForm !: FormGroup;
+  actionBtnTrash : string = "Save"
   constructor(private formBuilder : FormBuilder,
               private api : RessourcesService,
-              @Inject(MAT_DIALOG_DATA) public editDataTrush : any,
+              @Inject(MAT_DIALOG_DATA) public editDataTrash : any,
               private dialogRef : MatDialogRef<DialogTrushComponent>) { }
 
   ngOnInit(): void {
-    this.trushForm = this.formBuilder.group({
-      lontitude : ['',Validators.required],
+    this.trashForm = this.formBuilder.group({
+      _id : ['',Validators.required],
+      longitude : ['',Validators.required],
       latitude : ['',Validators.required],
-      Size : ['',Validators.required],
+      size : ['',Validators.required],
       date : ['',Validators.required]
     })
-    if (this.editDataTrush){
-      this.actionBtnTrush="Update"
-      this.trushForm.controls['lontitude'].setValue(this.editDataTrush.lontitude);
-      this.trushForm.controls['latitude'].setValue(this.editDataTrush.latitude);
-      this.trushForm.controls['Size'].setValue(this.editDataTrush.Size);
-      this.trushForm.controls['date'].setValue(this.editDataTrush.date);
+    if (this.editDataTrash){
+      this.actionBtnTrash="Update"
+      this.trashForm.controls['_id'].setValue(this.editDataTrash._id);
+      this.trashForm.controls['longitude'].setValue(this.editDataTrash.longitude);
+      this.trashForm.controls['latitude'].setValue(this.editDataTrash.latitude);
+      this.trashForm.controls['size'].setValue(this.editDataTrash.size);
+      this.trashForm.controls['date'].setValue(this.editDataTrash.date);
     }
   }
-  addTrush(){
-    if(!this.editDataTrush){
-      if(this.trushForm.valid){
-        this.api.postTrush(this.trushForm.value)
+  addTrash(){
+    if(!this.editDataTrash){
+      if(this.trashForm.valid){
+        this.api.postTrush(this.trashForm.value)
           .subscribe({
             next:(res)=>{
               alert("Truck added successfully")
-              this.trushForm.reset();
+              this.trashForm.reset();
               this.dialogRef.close('save');
             },
             error:()=>{
@@ -55,11 +57,11 @@ export class DialogTrushComponent implements OnInit {
     }
   }
   updateTrush(){
-    this.api.putTrush(this.trushForm.value,this.editDataTrush.id)
+    this.api.putTrush(this.trashForm.value,this.editDataTrash.id)
       .subscribe({
         next:(res)=>{
           alert("Truck updated Successfully");
-          this.trushForm.reset();
+          this.trashForm.reset();
           this.dialogRef.close('update');
         },
         error:()=>{
@@ -70,12 +72,12 @@ export class DialogTrushComponent implements OnInit {
 
   }
   deleteTrush(){
-    this.api.deleteTrush(this.editDataTrush.id)
+    this.api.deleteTrush(this.editDataTrash.id)
   }
 
 
 
 
 
-  
+
 }
