@@ -1,0 +1,6 @@
+{
+    "/gettrash": {
+      "target": "https://gww3cknu2k.execute-api.us-west-2.amazonaws.com",
+        "secure": false
+    }
+  }
