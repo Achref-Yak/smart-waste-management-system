@@ -1,19 +1,35 @@
 {
-  "posts": [
+ 
+  "productList": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "employeeName": "sss",
+      "employeeEmail": "ss",
+      "employeeJob": "Brand New",
+      "employeeSalary": 56,
+      "employeeCIN": "sss",
+      "date": "2022-03-23T23:00:00.000Z",
+      "id": 1
+    },
+    {
+      "employeeName": "zaezae",
+      "employeeEmail": "azeaz",
+      "employeeJob": "Brand New",
+      "employeeSalary": 65,
+      "employeeCIN": "aezaze",
+      "date": "2022-03-30T23:00:00.000Z",
+      "id": 2
     }
   ],
-  "comments": [
+  "truckList": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "regNumber": "ad",
+      "truckBrand": "Refurbished",
+      "tankVolume": 162,
+      "firstDriver": "561",
+      "secondDriver": "af",
+      "date": "2022-03-22T23:00:00.000Z",
+      "id": 1
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
+ 
 }
