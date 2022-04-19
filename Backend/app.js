@@ -8,7 +8,7 @@ const trashRoutes = require ('./routes/trash')
 
 
 const app = express();
-mongoose.connect('mongodb://admin:password@127.0.0.1:27017',
+mongoose.connect('mongodb+srv://achdb:gxEDiui60yGqQ27N@cluster0.ywcqk.mongodb.net/Cluster0?retryWrites=true&w=majority',
     { useNewUrlParser: true,
         useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
