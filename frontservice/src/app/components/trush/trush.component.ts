@@ -23,7 +23,6 @@ export class TrushComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
 
-
   constructor(private dialog : MatDialog, private api : RessourcesService, private trashService: TrashService) {
   }
 
@@ -43,6 +42,7 @@ export class TrushComponent implements OnInit {
 
   getAllAWStrash()
   {
+
     this.trashService.getAwsTrash().subscribe(data => {
       console.log(data);
       this.trash = data;

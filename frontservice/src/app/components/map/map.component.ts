@@ -3,10 +3,10 @@ import * as L from 'leaflet';
 import * as geojson from 'geojson';
 import { TrashService } from 'src/app/services/Trash.service';
 import {RessourcesService} from "../../services/ressources.service";
+import { webSocket } from 'rxjs/webSocket';
 
 import {debounce} from "rxjs";
-import {marker} from "leaflet";
-import { webSocket } from 'rxjs/webSocket';
+import {icon, marker} from "leaflet";
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -15,8 +15,8 @@ import { webSocket } from 'rxjs/webSocket';
 export class MapComponent implements AfterViewInit {
   private map;
   sensorsData;
-  points;
   subject = webSocket("wss://21t9ayt5cf.execute-api.us-west-2.amazonaws.com/production");
+  points;
   trash;
   markers: Array<{
     id: string;
@@ -27,8 +27,8 @@ export class MapComponent implements AfterViewInit {
 
   private initMap(): void {
     this.map = L.map('map', {
-      center: [ 39.8282, -98.5795 ],
-      zoom: 3
+      center: [ 35.766154,	10.823634],
+      zoom: 8.5
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -38,6 +38,10 @@ export class MapComponent implements AfterViewInit {
     });
 
     tiles.addTo(this.map);
+    this.map.on('click', function(e) {
+      alert("You clicked the map at " + e.latlng.toString());
+
+    } );
 
 
   }
@@ -59,18 +63,6 @@ export class MapComponent implements AfterViewInit {
       console.log(data);
       this.sensorsData = data;
 
-      this.subject.subscribe(
-        msg => {
-          console.log(msg);
-
-          this.sensorsData.push(msg)
-          this.getMarkers();
-  
-        }, // Called whenever there is a message from the server.
-        err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
-        () => console.log('complete') // Called when connection is closed (for whatever reason).
-      );
-
 let point = {
   "id": "9",
   "lat": 10.208476,
@@ -78,14 +70,8 @@ let point = {
   "message": "level: high",
 }
 
-this.points = this.markers;
+this.setMarkers();
 
-//this.markers.push(point);
-
-// this.markers.forEach(element => {
-
-
-this.getMarkers();
  // Add custom icon
 
 
@@ -93,28 +79,50 @@ this.getMarkers();
   }
 
 
-  getMarkers()
+getPercentage(distance)
+{
+  return (1 - parseFloat(distance)/ 50)*100
+}
+  setMarkers()
   {
-    
+
+    this.markers = [];
+    this.points = this.markers;
+
+//this.markers.push(point);
+
+// this.markers.forEach(element => {
+
+
  for (let i=0; i < this.sensorsData.length ; i++){
   for (let j=0; j < this.trash.length ;j++){
   if(this.trash[j]._id==this.sensorsData[i].id)
   {
-    const message = "distance: " + this.sensorsData[i].distance + "</br> gaz : "  + this.sensorsData[i].gaz + "</br> " ;
+    let adress
+    this.api.getAdress(this.trash[j].longitude, this.trash[j].latitude ).subscribe( data => {
+        adress = data
+        console.log(adress);
+        
+    })
+    const message = "id:" + this.sensorsData[i].id + "</br> Adress: " + " Level: " + this.getPercentage(this.sensorsData[i].distance)  + "% </br> Air : "  + this.sensorsData[i].gaz + "</br> " ;
+    this.points = [];
     this.points.message = message
     this.points.lat =this.trash[j].latitude;
     this.points.lon = this.trash[j].longitude;
     this.points.push(this.points);
-    console.log(this.points)
-    var icon = L.icon({
-      iconUrl: 'assets/marker-icon-2x.png',
-
+ 
+    var iconFull = L.icon({
+      iconUrl: 'assets/Full.png',
       iconSize: [30, 30],
-
-
+    });
+    var iconEmpty = L.icon({
+      iconUrl: 'assets/Empty.png',
+      iconSize: [30, 30],
     });
     this.points.forEach(element => {
 
+      if (this.sensorsData[i].distance < 50){
+          let icon = iconFull;
       var geojsonPoint: geojson.Point = {
         type: 'Point',
         coordinates: [element.lat,element.lon],
@@ -128,6 +136,23 @@ this.getMarkers();
       //Add popup message
       marker.bindPopup(element.message);
       marker.addTo(this.map);
+      }
+      else {
+        let icon = iconEmpty
+        var geojsonPoint: geojson.Point = {
+          type: 'Point',
+          coordinates: [element.lat,element.lon],
+        };
+        var marker = L.geoJSON(geojsonPoint, {
+
+          pointToLayer: (point,latlon)=> {
+            return L.marker(latlon, {icon: icon})
+          }
+        });
+        //Add popup message
+        marker.bindPopup(element.message);
+        marker.addTo(this.map);
+      }
 
 
     });
@@ -140,7 +165,19 @@ this.getMarkers();
 
   ngAfterViewInit(): void {
     this.getAllAWStrash();
+    
+
     this.initMap();
+    this.subject.subscribe(
+      msg => {
+        console.log(msg);
+
+        this.sensorsData.push(msg)
+        this.setMarkers();
+
+      }, // Called whenever there is a message from the server.
+      err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
+      () => console.log('complete') // Called when connection is closed (for whatever reason).
+    );
   }
 }
-

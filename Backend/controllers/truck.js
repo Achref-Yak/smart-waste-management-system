@@ -1,5 +1,21 @@
 const Truck = require('../models/Truck')
+const axios = require('axios');
+exports.getadress = (req, res, next) => {
 
+
+    const params = {
+      access_key: 'YOUR_ACCESS_KEY',
+      query: '1600 Pennsylvania Ave NW'
+    }
+    
+    axios.get('https://api.positionstack.com/v1/forward', {params})
+      .then(response => {
+        console.log(response.data);
+      }).catch(error => {
+        console.log(error);
+      });
+
+};
 
 exports.createTruck = (req, res, next) => {
     // console.log(res.body.TRUCK);

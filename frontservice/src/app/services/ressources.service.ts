@@ -8,6 +8,11 @@ export class RessourcesService {
 
   constructor(private http : HttpClient) { }
 
+
+  getAdress(lat, lon){
+    return this.http.get<any>("http://api.positionstack.com/v1/reverse?access_key=4802c343d74c322d4e2304e1ce8c9f4c&query="+lat+","+lon);
+  }
+
   postProduct(data : any){
     return this.http.post<any>("http://localhost:3000/productList/",data);
   }
