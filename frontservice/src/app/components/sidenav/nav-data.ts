@@ -36,7 +36,7 @@ export const navbarData = [
 
   {
     routeLink :'clients',
-    icon : 'fal fa-address-card',
+    icon : 'fas fa-user-edit',
     label : 'Client'
   },
 
