@@ -3,6 +3,8 @@ import * as L from 'leaflet';
 import * as geojson from 'geojson';
 import { TrashService } from 'src/app/services/Trash.service';
 import {RessourcesService} from "../../services/ressources.service";
+import { webSocket } from 'rxjs/webSocket';
+
 import {debounce} from "rxjs";
 import {icon, marker} from "leaflet";
 @Component({
@@ -13,6 +15,7 @@ import {icon, marker} from "leaflet";
 export class MapComponent implements AfterViewInit {
   private map;
   sensorsData;
+  subject = webSocket("wss://21t9ayt5cf.execute-api.us-west-2.amazonaws.com/production");
   points;
   trash;
   markers: Array<{
@@ -67,7 +70,24 @@ let point = {
   "message": "level: high",
 }
 
-this.points = this.markers;
+this.setMarkers();
+
+ // Add custom icon
+
+
+    });
+  }
+
+
+getPercentage(distance)
+{
+  return (1 - parseFloat(distance)/ 50)*100
+}
+  setMarkers()
+  {
+
+    this.markers = [];
+    this.points = this.markers;
 
 //this.markers.push(point);
 
@@ -78,12 +98,19 @@ this.points = this.markers;
   for (let j=0; j < this.trash.length ;j++){
   if(this.trash[j]._id==this.sensorsData[i].id)
   {
-    const message = "Level: " + this.sensorsData[i].distance + "</br> Air : "  + this.sensorsData[i].gaz + "</br> " ;
+    let adress
+    this.api.getAdress(this.trash[j].longitude, this.trash[j].latitude ).subscribe( data => {
+        adress = data
+        console.log(adress);
+        
+    })
+    const message = "id:" + this.sensorsData[i].id + "</br> Adress: " + " Level: " + this.getPercentage(this.sensorsData[i].distance)  + "% </br> Air : "  + this.sensorsData[i].gaz + "</br> " ;
+    this.points = [];
     this.points.message = message
     this.points.lat =this.trash[j].latitude;
     this.points.lon = this.trash[j].longitude;
     this.points.push(this.points);
-    console.log(this.points)
+ 
     var iconFull = L.icon({
       iconUrl: 'assets/Full.png',
       iconSize: [30, 30],
@@ -134,15 +161,23 @@ this.points = this.markers;
 }
 // })
 ;
-
- // Add custom icon
-
-
-    });
   }
 
   ngAfterViewInit(): void {
     this.getAllAWStrash();
+    
+
     this.initMap();
+    this.subject.subscribe(
+      msg => {
+        console.log(msg);
+
+        this.sensorsData.push(msg)
+        this.setMarkers();
+
+      }, // Called whenever there is a message from the server.
+      err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
+      () => console.log('complete') // Called when connection is closed (for whatever reason).
+    );
   }
 }
