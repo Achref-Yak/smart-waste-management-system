@@ -1,59 +1,45 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {DialogTrushComponent} from "./dialog-trush/dialog-trush.component";
+import {DialogClientComponent} from "./dialog-client/dialog-client.component";
 import {RessourcesService} from "../../services/ressources.service";
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { TrashService } from 'src/app/services/Trash.service';
 
 @Component({
-  selector: 'app-trush',
-  templateUrl: './trush.component.html',
-  styleUrls: ['./trush.component.css']
+  selector: 'app-client',
+  templateUrl: './client.component.html',
+  styleUrls: ['./client.component.css']
 })
-export class TrushComponent implements OnInit {
-  title = 'Angular13Crud';
-  displayedColumns: string[] = ['_id','longitude','latitude', 'size', 'date', 'action'];
+export class ClientComponent implements OnInit {
+  displayedColumns: string[] = ['clientCIN', 'clientName', 'clientEmail', 'clientAdresss', 'client_trushSize', 'clientType', 'action'];
   dataSource!: MatTableDataSource<any>;
-  trash
-  positions = [{id: "", lat: "", lon: ""}]
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
 
 
-  constructor(private dialog : MatDialog, private api : RessourcesService, private trashService: TrashService) {
+  constructor(private dialog : MatDialog, private api : RessourcesService) {
   }
 
   ngOnInit(): void {
-    this.getAllAWStrash();
-    this.getAllTrushs();
-  }
+        this.getAllClients();
+    }
   openDialog() {
-    this.dialog.open(DialogTrushComponent, {
+    this.dialog.open(DialogClientComponent, {
       width:'30%'
     }).afterClosed().subscribe(val=>{
       if (val === 'save'){
-        this.getAllTrushs();
+        this.getAllClients();
       }
     })
   }
-
-  getAllAWStrash()
-  {
-    this.trashService.getAwsTrash().subscribe(data => {
-      console.log(data);
-      this.trash = data;
-
-    });
-  }
-  getAllTrushs(){
-    this.api.getTrush()
+  getAllClients(){
+    this.api.getClient()
       .subscribe({
         next:(res)=>{
-          console.log(res);
+           console.log(res);
           this.dataSource = new MatTableDataSource(res);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort
@@ -64,25 +50,26 @@ export class TrushComponent implements OnInit {
       })
   }
 
-  editTrush(row : any){
-    this.dialog.open(DialogTrushComponent,{
+  editClient(row : any){
+    this.dialog.open(DialogClientComponent,{
       width:'30%',
       data:row
     }).afterClosed().subscribe(val=>{
       if (val === 'update'){
-        this.getAllTrushs();
+        this.getAllClients();
       }
     })
   }
-  deleteTrush(id:any){
-    this.api.deleteTrush(id)
+  deleteClient(id:number){
+    this.api.deleteClient(id)
+
       .subscribe({
         next:(res)=>{
-          alert("Truck Deleted Successfully")
-          this.getAllTrushs();
+          alert("client Deleted Successfully")
+          this.getAllClients();
         },
         error:()=>{
-          alert("Error while deleting the truck!!")
+          alert("Error while deleting the client!!")
         }
       })
   }
@@ -95,7 +82,6 @@ export class TrushComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 
 
 }

@@ -59,7 +59,7 @@ export class DialogTruckComponent implements OnInit {
     }
   }
   updateTruck(){
-    this.api.putTruck(this.truckForm.value,this.editDataTruck.id)
+    this.api.putTruck(this.truckForm.value,this.editDataTruck._id)
       .subscribe({
         next:(res)=>{
           alert("Truck updated Successfully");
