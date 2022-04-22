@@ -18,6 +18,7 @@ export class MapComponent implements AfterViewInit {
   subject = webSocket("wss://21t9ayt5cf.execute-api.us-west-2.amazonaws.com/production");
   points;
   trash;
+  adress;
   markers: Array<{
     id: string;
     lat: number,
@@ -98,19 +99,20 @@ getPercentage(distance)
   for (let j=0; j < this.trash.length ;j++){
   if(this.trash[j]._id==this.sensorsData[i].id)
   {
-    let adress
+    // let adress
     this.api.getAdress(this.trash[j].longitude, this.trash[j].latitude ).subscribe( data => {
-        adress = data
-        console.log(adress);
-        
+        this.adress = data
+        console.log(this.adress[0].country);
+
+
     })
-    const message = "id:" + this.sensorsData[i].id + "</br> Adress: " + " Level: " + this.getPercentage(this.sensorsData[i].distance)  + "% </br> Air : "  + this.sensorsData[i].gaz + "</br> " ;
+    const message = "id:" + this.sensorsData[i].id + "</br> Adress: " + "</br> Level: " + this.getPercentage(this.sensorsData[i].distance)  + "% </br> Air : "  + this.sensorsData[i].gaz + "</br> " ;
     this.points = [];
     this.points.message = message
     this.points.lat =this.trash[j].latitude;
     this.points.lon = this.trash[j].longitude;
     this.points.push(this.points);
- 
+
     var iconFull = L.icon({
       iconUrl: 'assets/Full.png',
       iconSize: [30, 30],
@@ -165,7 +167,7 @@ getPercentage(distance)
 
   ngAfterViewInit(): void {
     this.getAllAWStrash();
-    
+
 
     this.initMap();
     this.subject.subscribe(

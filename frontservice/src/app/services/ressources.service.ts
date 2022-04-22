@@ -77,7 +77,7 @@ export class RessourcesService {
   deleteClient(id:number){
     return this.http.delete<any>("http://localhost:3000/ClientList/"+id);
   }
-   
+
 
 }
 
