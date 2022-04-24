@@ -112,6 +112,7 @@ getPercentage(distance)
     this.points.lat =this.trash[j].latitude;
     this.points.lon = this.trash[j].longitude;
     this.points.push(this.points);
+    console.log(this.points)
 
     var iconFull = L.icon({
       iconUrl: 'assets/Full.png',
