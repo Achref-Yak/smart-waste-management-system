@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validator, Validators} from "@angular/forms";
 import {RessourcesService} from "../../../services/ressources.service";
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-dialog-truck',
@@ -11,6 +12,12 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
 export class DialogTruckComponent implements OnInit {
 
   truckList = ["Brand New", "Second Hand", "Refurbished"]
+  nameList;
+  nameFromTruck;
+  employeeList:Array<{
+  Name : string;
+  }> = []
+
   truckForm !: FormGroup;
   actionBtnTruck : string = "Save"
   constructor(private formBuilder : FormBuilder,
@@ -36,13 +43,61 @@ export class DialogTruckComponent implements OnInit {
       this.truckForm.controls['secondDriver'].setValue(this.editDataTruck.secondDriver);
       this.truckForm.controls['date'].setValue(this.editDataTruck.date);
     }
+    this.api.getTruck()
+      .subscribe({
+        next:(params)=>{
+          this.nameFromTruck = params;
+    this.employeeList=[]
+    this.nameList=this.employeeList;
+    this.api.getProduct()
+      .subscribe({
+        next:(res)=>{
+
+          if (this.nameFromTruck.length == 0){
+            this.nameList = [];
+            for (let i = 0; i < res.length; i++) {
+              //console.log(res[i].employeeName);
+              this.nameList[i] = res[i].employeeName;
+            }
+
+
+          }
+          else{
+          for (let i=0; i < this.nameFromTruck.length ; i++){
+            for (let j=0; j < res.length ;j++){
+              if (res[j].employeeName!=this.nameFromTruck[i].firstDriver && res[j].employeeName!=this.nameFromTruck[i].secondDriver){
+
+                let k=0
+                this.nameList = [];
+                   //for (let i = 0; i < res.length; i++) {
+                  //console.log(res[i].employeeName);
+                  this.nameList[i] = res[j].employeeName;
+                   //}
+                k++
+              }
+
+            }}}
+          console.log(this.nameList)
+
+
+        },
+
+        error:(err)=>{
+          alert("Error while fetching the Records !!")
+        }
+      })
+        }
+      })
+
   }
+
   addTruck(){
     if(!this.editDataTruck){
       if(this.truckForm.valid){
         this.api.postTruck(this.truckForm.value)
           .subscribe({
             next:(res)=>{
+
               alert("Truck added successfully")
               this.truckForm.reset();
               this.dialogRef.close('save');
@@ -76,4 +131,6 @@ export class DialogTruckComponent implements OnInit {
   deleteTruck(){
     this.api.deleteTruck(this.editDataTruck.id)
   }
+
+
 }

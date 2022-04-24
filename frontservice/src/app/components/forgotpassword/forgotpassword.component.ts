@@ -19,16 +19,16 @@ export class ForgotpasswordComponent implements OnInit {
   submitted = false;
   signupInValid: boolean = false;
   serverError: String;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private toastrService: ToastrService,
     private router: Router,
-    
+
   ) {
     this.form = this.formBuilder.group({
-      
+
       token: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       passwordConfirm: ['', [Validators.required, Validators.minLength(6)]]
