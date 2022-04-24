@@ -3,8 +3,9 @@
       "target": "https://gww3cknu2k.execute-api.us-west-2.amazonaws.com",
         "secure": false
     },
-    "geocode/": {
-      "target": "https://maps.googleapis.com/maps/api/",
+
+    "/reverse": {
+      "target": "http://api.positionstack.com/v1",
       "secure": false
     }
   }
