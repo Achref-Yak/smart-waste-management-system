@@ -19,15 +19,35 @@
       <input formControlName="tankVolume" matInput type="number" placeholder="TankVolume">
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>FirstDriver</mat-label>
-      <input formControlName="firstDriver" matInput placeholder="FirstDriver">
+    <mat-form-field appearance="fill">
+    <mat-label for="">firstDriver</mat-label>
+    <mat-select formControlName="firstDriver"  >
+      <mat-option  *ngFor="let name of nameList" [value]="name">
+        {{name}}
+
+      </mat-option>
+    </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>SecondDriver</mat-label>
-      <input formControlName="secondDriver" matInput placeholder="SecondDriver">
+    <mat-form-field appearance="fill">
+      <mat-label for="">second driver</mat-label>
+    <mat-select formControlName="secondDriver" >
+      <mat-option  *ngFor="let name of nameList" [value]="name">
+        {{name}}
+
+      </mat-option>
+    </mat-select>
     </mat-form-field>
+
+    <!--    <mat-form-field appearance="outline">-->
+<!--      <mat-label>FirstDriver</mat-label>-->
+<!--      <input formControlName="firstDriver" matInput placeholder="FirstDriver">-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field appearance="outline">-->
+<!--      <mat-label>SecondDriver</mat-label>-->
+<!--      <input formControlName="secondDriver" matInput placeholder="SecondDriver">-->
+<!--    </mat-form-field>-->
 
 
 
