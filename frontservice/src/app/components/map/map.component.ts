@@ -99,20 +99,21 @@ getPercentage(distance)
   for (let j=0; j < this.trash.length ;j++){
   if(this.trash[j]._id==this.sensorsData[i].id)
   {
-    // let adress
+    let adress
     this.api.getAdress(this.trash[j].longitude, this.trash[j].latitude ).subscribe( data => {
         this.adress = data
-        console.log(this.adress[0].country);
+      
+        this.adress = this.adress.results[2].formatted_address;
+        console.log(this.adress);
 
 
-    })
-    const message = "id:" + this.sensorsData[i].id + "</br> Adress: " + "</br> Level: " + this.getPercentage(this.sensorsData[i].distance)  + "% </br> Air : "  + this.sensorsData[i].gaz + "</br> " ;
+        const message = "id:" + this.sensorsData[i].id + "</br> Adress: "+ this.adress! + "</br> Level: " + this.getPercentage(this.sensorsData[i].distance)  + "% </br> Air : "  + this.sensorsData[i].gaz + "</br> " ;
     this.points = [];
     this.points.message = message
     this.points.lat =this.trash[j].latitude;
     this.points.lon = this.trash[j].longitude;
     this.points.push(this.points);
-
+ 
     var iconFull = L.icon({
       iconUrl: 'assets/Full.png',
       iconSize: [30, 30],
@@ -158,6 +159,9 @@ getPercentage(distance)
 
 
     });
+
+    })
+    
   }
   }
 }

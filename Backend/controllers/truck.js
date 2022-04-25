@@ -1,4 +1,5 @@
 const Truck = require('../models/Truck')
+
 const axios = require('axios');
 exports.getadress = (req, res, next) => {
 
@@ -16,6 +17,7 @@ exports.getadress = (req, res, next) => {
       });
 
 };
+
 
 exports.createTruck = (req, res, next) => {
     // console.log(res.body.TRUCK);

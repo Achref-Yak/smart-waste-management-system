@@ -10,7 +10,7 @@ export class RessourcesService {
 
 
   getAdress(lat, lon){
-    return this.http.get<any>("http://api.positionstack.com/v1/reverse?access_key=4802c343d74c322d4e2304e1ce8c9f4c&query="+lat+","+lon);
+    return this.http.get<any>("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&key=AIzaSyBpc-W4SSnb8kM3cNDK9MYNCucHZdS7Els");
   }
 
   postProduct(data : any){
