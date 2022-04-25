@@ -39,9 +39,9 @@
             <td mat-cell *matCellDef="let row"> {{row.clientEmail}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="clientAdresss">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresss </th>
-            <td mat-cell *matCellDef="let row"> {{row.clientAdresss}} </td>
+          <ng-container matColumnDef="clientAddress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+            <td mat-cell *matCellDef="let row"> {{row.clientAddress}} </td>
           </ng-container>
   
   
@@ -56,6 +56,11 @@
           <ng-container matColumnDef="clientType">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> clientType </th>
             <td mat-cell *matCellDef="let row"> {{row.clientType}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="client_trash_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> client_trash_id </th>
+            <td mat-cell *matCellDef="let row"> {{row.client_trash_id}} </td>
           </ng-container>
   
           <ng-container matColumnDef="action">

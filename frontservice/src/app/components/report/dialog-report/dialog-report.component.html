@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Add Report Form</h1>
+<div mat-dialog-content>
+      <form [formGroup]="reportForm" >
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Name&LastName</mat-label>
+          <input formControlName="Name" matInput placeholder="Name&LastName">
+        </mat-form-field>
+
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input formControlName="Email" matInput placeholder="Email">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+            <mat-label>Subject</mat-label>
+            <input formControlName="Subject" matInput placeholder="Subject">
+          </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Content</mat-label>
+            <input formControlName="Content" matInput placeholder="Content">
+          </mat-form-field>
+
+        <mat-form-field appearance="outline"> 
+            <mat-label>Location</mat-label>
+            <input formControlName="Location" matInput placeholder="Location">
+        </mat-form-field>    
+
+  </form>
+
+
+</div>
+
+<div mat-dialog-actions [align]="'end'" >
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addReport()">{{actionBtn}}</button>
+</div>
