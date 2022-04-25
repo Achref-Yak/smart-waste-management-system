@@ -79,5 +79,21 @@ export class RessourcesService {
   }
 
 
+
+  postReport(data : any){
+    return this.http.post<any>("http://localhost:3000/ReportList/",data);
+  }
+  getReport(){
+    return this.http.get<any>("http://localhost:3000/ReportList/");
+  }
+  putReport(data:any, id : number){
+    return this.http.put<any>("http://localhost:3000/ReportList/"+id, data);
+
+  }
+  deleteReport(id:number){
+    return this.http.delete<any>("http://localhost:3000/ReportList/"+id);
+  }
+
+
 }
 

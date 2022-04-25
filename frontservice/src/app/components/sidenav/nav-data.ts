@@ -39,7 +39,12 @@ export const navbarData = [
     icon : 'fas fa-user-edit',
     label : 'Client'
   },
-
+  {
+    routeLink :'reports',
+    icon : 'fa-regular fa-bells', 
+    label : 'Report'
+  },
+  
  {
     routeLink :'',
     icon : 'fal fa-sign-out',

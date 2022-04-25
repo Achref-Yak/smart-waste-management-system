@@ -22,14 +22,14 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Address</mat-label>
-            <input formControlName="clientAdresss" matInput placeholder="Address">
+            <input formControlName="clientAddress" matInput placeholder="Address">
           </mat-form-field>
 
 
         <label for=""><h1>client_trushSize</h1></label>
         <mat-radio-group formControlName="client_trushSize"  class="example-radio-group">
-          <mat-radio-button class="example-radio-button" *ngFor="let job of trushSize" [value]="trushSize">
-            {{trushSize}}
+          <mat-radio-button class="example-radio-button" *ngFor="let trash of trushSize" [value]="trash">
+            {{trash}}
 
           </mat-radio-button>
         </mat-radio-group>
@@ -39,6 +39,12 @@
             <mat-label>clientType</mat-label>
             <input formControlName="clientType" matInput placeholder="clientType">
           </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>trash_id</mat-label>
+            <input formControlName="client_trash_id" matInput placeholder="client_trash_id">
+          </mat-form-field>  
 
         
 

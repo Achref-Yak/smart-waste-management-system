@@ -13,10 +13,13 @@
       </div>
       <!-- Links -->
       <div class="main-navgation hide-for-mobile">
-        <a href="#">Home</a><a href="#">About</a><a href="#">Contact</a><a href="#">Blog</a><a href="#">Careers</a>
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Reclamation</a>
+        <a href="#">Contact </a>
       </div>
       <!-- CTA Button -->
-      <a (click)="openDialog()" class="button hide-for-mobile">Join Us</a>
+      <a (click)="openDialogLogin()" class="button hide-for-mobile">Customer Login</a>
       <!-- Hamburger Menu -->
       <div  class="menu hide-for-desktop">
         <span></span>
@@ -36,11 +39,11 @@
         <source src="../../../assets/smartWaste.mp4" type="video/mp4">
       </video>
       <div class="hero-text">
-        <h1>Smart waste management system</h1>
+        <h1>Mr.Clean</h1>
         <p>
           Get full control over the bins you manage - be aware of current status, avoid critical situations, and introduce the dynamic collection to save time, cost, and fuel.
         </p>
-        <a href="#" class="button">Join Us</a>
+        <a (click)="openDialog()" class="button hide-for-mobile">Join Us</a>
       </div>
     </div>
   </section>
@@ -50,7 +53,8 @@
       <div class="section-heading">
         <h2>Why choose us?</h2>
         <p>
-          Sensoneo Waste Monitoring solution allows cities and businesses to uncover and understand the complex dynamics of their waste production.
+          Waste Monitoring solution allows cities and businesses to uncover and understand the complex dynamics of their waste production,
+           using our patented IoT tech site to reduce waste-related costs and save the planet, all at once.
         </p>
       </div>
       <div class="section-contant">
@@ -113,6 +117,7 @@
           </div>
         </div>
       </div>
+      <app-report></app-report>
     </div>
   </section>
 
