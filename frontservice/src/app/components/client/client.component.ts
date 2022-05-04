@@ -65,8 +65,14 @@ export class ClientComponent implements OnInit {
 
       .subscribe({
         next:(res)=>{
-          alert("client Deleted Successfully")
-          this.getAllClients();
+
+          var result = confirm("are you sure you want to delete this?");
+          if(result)  {
+              alert("client Deleted Successfully!");
+              this.getAllClients();
+          }
+
+          
         },
         error:()=>{
           alert("Error while deleting the client!!")

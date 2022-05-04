@@ -54,8 +54,12 @@ export class ReportListComponent implements OnInit {
 
       .subscribe({
         next:(res)=>{
-          alert("report Deleted Successfully")
-          this.getAllReports();
+
+          var result = confirm("are you sure you want to delete this?");
+          if(result)  {
+              alert("report Deleted Successfully!");
+              this.getAllReports();
+          }
         },
         error:()=>{
           alert("Error while deleting the report!!")
@@ -65,7 +69,9 @@ export class ReportListComponent implements OnInit {
 
   SendMail(Email: string) {
     
-    return this.api.postReport(Email)
+    return this.api.postMail('mail', {
+      Email
+    });
     
   }
 
@@ -74,13 +80,33 @@ export class ReportListComponent implements OnInit {
   }
 
   ViewRep(Email: string, Content: string, Subject: string) {
+    //console.log("here: ", Email, Content, Subject );
+    
+    
+    this.msg = 'subject: \n' + Subject + '\nContent :\n' + Content ;
+    var result = confirm(this.msg);
+    
+    if(result)  {
+      this.SendMail(Email).subscribe((res: any) => {
+        console.log(res);
+        this.ngOnInit();
+      });
+        alert("mail sended Successfully!");
+        this.ngOnInit();
+    }
+
+
+/*
     this.SendMail(Email).subscribe((res: any) => {
       console.log(res);
       this.ngOnInit();
     });
     this.msg = 'subject: \n' + Subject + '\nContent :\n' + Content ;
+
+    
     alert(this.msg);
-    this.ngOnInit();
+    
+    this.ngOnInit();*/
   }
 
 

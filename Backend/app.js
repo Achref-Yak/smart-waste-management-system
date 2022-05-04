@@ -38,24 +38,25 @@ app.use('/reportList',reportRoutes);
 app.use('/clientList',clientRoutes);
 
 //#region SEND MAIL
-app.post((req, res) => {
+app.post("/mail",(req, res) => {
     // Step 1
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'smarttrashtunisia@gmail.com', // TODO: your gmail account
-            pass: 'smart1trash' // TODO: your gmail password
+            user: 'trash.net00@gmail.com', // TODO: your gmail account
+            pass: 'trashnet123' // TODO: your gmail password
         }
     });
 
     // Step 2
     let mailOptions = {
-        from: 'smarttrashtunisia@gmail.com', // TODO: email sender
+        from: 'trash.net00@gmail.com', // TODO: email sender
         to: req.body.Email,
         subject: 'Trash Monitoring System',
         text: 'hello !! Thank you!!!',
-        html: '<h1 style="color:blue;"> Smart Trash Tunisia  &#128151;</h1><p style="text-align-all: center"><h4>Automatic mail works perfectly !! </h4><br> Bonjour Votre reclamation est bien pris en consideration!<br>' +
-            ' nous allons essayer de fixer le probleme le plus tot possible </p>' +
+        html: '<h1 style="color:blue;">  Trash-Net Tunisia  &#128151;</h1><p style="text-align-all: center"><br> Hello Your complaint has been taken into consideration!<br>' +
+            ' we will try to fix the problem as soon as possible </p>' +
+            '<img src="../frontservice/src/assets/Trashnet.png">'+
             '<h6>this is an automatic mail do not reply</h6>'
             
     };
