@@ -4,5 +4,7 @@ export class Report {
     Email: number ;
     Subject: string ;
     Content: string ;
-    Location: string ; 
+    longitude :any;
+    latitude :any;
+
   }

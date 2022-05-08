@@ -18,7 +18,7 @@ export class ReportListComponent implements OnInit {
   msg: string;
   reports: Report[];
 
-  displayedColumns: string[] = ['Name', 'Email', 'Subject', 'Content', 'Location', 'action'];
+  displayedColumns: string[] = ['Name', 'Email', 'Subject', 'Content','longitude','latitude', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -68,11 +68,11 @@ export class ReportListComponent implements OnInit {
   }
 
   SendMail(Email: string) {
-    
+
     return this.api.postMail('mail', {
       Email
     });
-    
+
   }
 
   getReportC() {
@@ -81,11 +81,11 @@ export class ReportListComponent implements OnInit {
 
   ViewRep(Email: string, Content: string, Subject: string) {
     //console.log("here: ", Email, Content, Subject );
-    
-    
+
+
     this.msg = 'subject: \n' + Subject + '\nContent :\n' + Content ;
     var result = confirm(this.msg);
-    
+
     if(result)  {
       this.SendMail(Email).subscribe((res: any) => {
         console.log(res);
@@ -103,9 +103,9 @@ export class ReportListComponent implements OnInit {
     });
     this.msg = 'subject: \n' + Subject + '\nContent :\n' + Content ;
 
-    
+
     alert(this.msg);
-    
+
     this.ngOnInit();*/
   }
 

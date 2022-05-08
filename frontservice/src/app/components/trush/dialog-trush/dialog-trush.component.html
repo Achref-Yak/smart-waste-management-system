@@ -2,16 +2,19 @@
 <div mat-dialog-content>
   <form [formGroup]="trashForm" (ngSubmit)="addTrash()" >
     <label for=""><h1>Location</h1></label>
+
     <mat-form-field appearance="outline">
       <mat-label>id</mat-label>
       <input formControlName="_id" matInput placeholder="_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f._id.errors }">
     </mat-form-field>
+
     <mat-error *ngIf="submitted && f._id.errors" class="alerte alerte-danger">
       <span *ngIf="f._id.errors.required ">id is required</span> 
     </mat-error>
     <mat-form-field appearance="outline">
       <mat-label>Longitude</mat-label>
       <input formControlName="longitude" matInput placeholder="longitude" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.longitude.errors }">
+
     </mat-form-field>
     <mat-error *ngIf="submitted && f.longitude.errors" class="alerte alerte-danger">
       <span *ngIf="f.longitude.errors.required ">longitude is required</span> 

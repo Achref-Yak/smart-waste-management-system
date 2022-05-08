@@ -14,7 +14,9 @@ const clientRoutes = require ('./routes/client')
 
 
 const app = express();
-mongoose.connect('mongodb+srv://wael1:SBWxkMCNrjEuW2rm@cluster0.k3wgl.mongodb.net/mrclean?retryWrites=true&w=majority',
+ 
+mongoose.connect('mongodb+srv://achdb:gxEDiui60yGqQ27N@cluster0.ywcqk.mongodb.net/Cluster0?retryWrites=true&w=majority',
+ 
     { useNewUrlParser: true,
         useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -31,6 +33,7 @@ app.use(bodyParser.json());
 // app.use('/images', express.static(path.join(__dirname, 'images')));
 // app.use('/api/stuff', stuffRoutes);
 // app.use('/api/auth', userRoutes);
+
 app.use('/productList', employeeRoutes);
 app.use('/truckList', truckRoutes);
 app.use('/trashList',trashRoutes);
@@ -56,7 +59,7 @@ app.post("/mail",(req, res) => {
         text: 'hello !! Thank you!!!',
         html: '<h1 style="color:blue;">  Trash-Net Tunisia  &#128151;</h1><p style="text-align-all: center"><br> Hello Your complaint has been taken into consideration!<br>' +
             ' we will try to fix the problem as soon as possible </p>' +
-            '<img src="../frontservice/src/assets/Trashnet.png">'+
+            '<img src="https://raw.githubusercontent.com/Achref-Yak/smarttrash-microservices/main/frontservice/src/assets/Trashnet.png?token=GHSAT0AAAAAABRDXCUGAKRQQZLTL3FT2AH6YTTDRIQ">'+
             '<h6>this is an automatic mail do not reply</h6>'
             
     };

@@ -7,7 +7,15 @@ import {HttpClient} from "@angular/common/http";
 export class RessourcesService {
 
   constructor(private http : HttpClient) { }
-
+  
+ 
+  getMultipleDestinations(multiple, origin_lat, origin_lon){
+    return this.http.get<any>( "http://localhost:3000/trashList/getdestinations/"+multiple+"/"+origin_lat+"/"+origin_lon);
+  }
+ 
+  postPrediction(id, Day, morning, miday){
+    return this.http.get<any>("http://127.0.0.1:5000/?day="+ Day+ "&morning="+ morning + "&miday=" + miday);
+  }
 
   getAdress(lat, lon){
     return this.http.get<any>("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&key=AIzaSyBpc-W4SSnb8kM3cNDK9MYNCucHZdS7Els");

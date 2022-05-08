@@ -1,6 +1,6 @@
 const Trash = require('../models/Trash')
-
-
+const axios = require('axios');
+ 
 exports.createTrash = (req, res, next) => {
     // console.log(res.body.trash);
     const trashObject = req.body;
@@ -77,3 +77,31 @@ exports.getallTrash = (req, res, next) => {
         )
         .catch(error => res.status(400).json({error: error}))
 };
+
+exports.getDest = (req, res, next) => {
+    const multiple = req.params.multiple;
+    const lat = req.params.lat;
+    const lon = req.params.lon;
+
+    console.log(req.url);
+    axios.get("https://maps.googleapis.com/maps/api/distancematrix/json?destinations="+multiple+"&origins="+lon+","+lat+"&key=AIzaSyBpc-W4SSnb8kM3cNDK9MYNCucHZdS7Els")
+    .then(function (response) {
+
+        console.log(response);
+      // handle success
+      res.status(200).json({
+        message: response.data
+    });
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+  
+  
+};
+
+

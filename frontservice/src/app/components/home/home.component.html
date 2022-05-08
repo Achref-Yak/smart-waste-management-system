@@ -39,7 +39,7 @@
         <source src="../../../assets/TRASH.VIDEO.mp4" type="video/mp4">
       </video>
       <div class="hero-text">
-        <h1>Mr.Clean</h1>
+        <h1>Trash-Net</h1>
         <p>
           Get full control over the bins you manage - be aware of current status, avoid critical situations, and introduce the dynamic collection to save time, cost, and fuel.
         </p>
@@ -54,7 +54,7 @@
         <h2>Why choose us?</h2>
         <p>
           Waste Monitoring solution allows cities and businesses to uncover and understand the complex dynamics of their waste production,
-           using our patented IoT tech site to reduce waste-related costs and save the planet, all at once.
+          using our patented IoT tech site to reduce waste-related costs and save the planet, all at once.
         </p>
       </div>
       <div class="section-contant">
@@ -68,7 +68,7 @@
             </div>
             <div class="feature-description">
               <p>
-               Our routing system is flexible ;  rapid and secure 
+                Our routing system is flexible ;  rapid and secure
               </p>
             </div>
           </div>
@@ -118,7 +118,26 @@
       </div>
       <app-report></app-report>
     </div>
+    <section class="course">
+      <div class="container">
+        <h1 class="text-center">Our Team</h1>
+
+        <div class="row mt-5" >
+          <div class="col-lg-3 mb-5" *ngFor="let cs of course">
+            <div class="box shadow-sm">
+              <img src="{{cs.image}}" width="100%">
+              <h4 class="mt-2">{{cs.name}}</h4>
+              <p clas="mt-2">{{cs.description}}</p>
+              <!--            <button class="btn btn-primary btn-sm mt-2">Watch now</button>-->
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
   </section>
+
 
 </main>
 <!-- Footer -->
@@ -131,7 +150,7 @@
       </a>
     </div>
     <div class="footer-social-media">
-      <a href="#">
+      <a href="https://www.facebook.com/Trash-Net-114880177088865">
         <!-- <img src="./images/icon-facebook.svg" alt="Facebook" /> -->
         <svg xmlns="https://www.facebook.com/Trash-Net-114880177088865" width="20" height="20">
           <title>Facebook</title>
@@ -182,20 +201,19 @@
       <a href="#" class="button">Request Invite</a>
     </div>
     <div class="footer-copyright">
-      <p>© Easybank. All Rights Reserved</p>
+      <p>© Trash-Net. All Rights Reserved</p>
     </div>
   </div>
   <div class="attribution">
-     Coded by <span class="outer-link">[ Wael Chakchouk /Achref Yakdhane /Sofien Sellami ]</span>.
+    Coded by <span class="outer-link">[ Wael Chakchouk /Achref Yakdhane /Sofien Sellami ]</span>.
     <ul class="social-media">
       <li>
         <a href="https://github.com/Achref-Yak/smarttrash-microservices" title="Visite Our Github Account">
           <img src="https://raw.githubusercontent.com/devicons/devicon/1a5dbfa142a9677d6ddaa05d05f377ac23af9a2e/icons/github/github-original.svg" class="light" alt="My Github Account" />
         </a>
       </li>
-      
+
     </ul>
   </div>
 
 </footer>
-
