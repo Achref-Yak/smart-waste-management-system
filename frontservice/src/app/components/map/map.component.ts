@@ -125,7 +125,7 @@ getPercentage(distance)
     });
     this.points.forEach(element => {
 
-      if (this.sensorsData[i].distance < 50){
+      if (this.sensorsData[i].distance <= 25 ){
           let icon = iconFull;
       var geojsonPoint: geojson.Point = {
         type: 'Point',
@@ -141,8 +141,8 @@ getPercentage(distance)
       marker.bindPopup(element.message);
       marker.addTo(this.map);
       }
-      else {
-        let icon = iconEmpty
+      else  {
+        let icon = iconEmpty ;
         var geojsonPoint: geojson.Point = {
           type: 'Point',
           coordinates: [element.lat,element.lon],

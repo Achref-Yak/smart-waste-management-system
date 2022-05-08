@@ -64,7 +64,7 @@ export const dashboardRoutes  = [
 }]
 
 export const routes  = [{
-  path: 'home',
+  path: '',
   component: HomeComponent,
  // canActivate: [AuthGuardService]
 },
