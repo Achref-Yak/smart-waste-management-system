@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ViewChild } from '@angular/core';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-report',
@@ -21,7 +22,7 @@ export class ReportComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  openDialog() {
+  openReportDialog() {
     this.dialog.open(DialogReportComponent, {
       width:'30%'
     }).afterClosed().subscribe(val=>{
@@ -29,6 +30,7 @@ export class ReportComponent implements OnInit {
         this.getAllReports();
       }
     })
+
   }
 
   getAllReports(){
@@ -46,4 +48,6 @@ export class ReportComponent implements OnInit {
       })
   }
 
+
 }
+

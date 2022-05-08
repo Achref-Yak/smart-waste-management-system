@@ -56,10 +56,12 @@ export const dashboardRoutes  = [
 
 }]
 
-export const routes  = [{
+export const routes  = [
+  {
   path: '',
   component: HomeComponent,
  // canActivate: [AuthGuardService]
+
 },
 {
   path: 'forgotpassword',
@@ -90,6 +92,7 @@ export const routes  = [{
   label: 'admin',
   children: dashboardRoutes,
 }
+
 
 ];
 
