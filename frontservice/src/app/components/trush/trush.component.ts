@@ -27,6 +27,7 @@ export class TrushComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.getAllAWStrash();
     this.getAllTrushs();
   }
@@ -39,6 +40,7 @@ export class TrushComponent implements OnInit {
       }
     })
   }
+
 
   getAllAWStrash()
   {

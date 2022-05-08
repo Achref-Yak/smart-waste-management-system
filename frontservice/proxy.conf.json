@@ -4,8 +4,12 @@
         "secure": false
     },
 
-    "/reverse": {
-      "target": "http://api.positionstack.com/v1",
+    "/maps/api/": {
+      "target": "https://maps.googleapis.com",
+      "secure": false
+    },
+    "/predict": {
+      "target": "http://127.0.0.1:5000",
       "secure": false
     }
   }
