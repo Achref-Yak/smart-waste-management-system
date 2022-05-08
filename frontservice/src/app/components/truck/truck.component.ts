@@ -65,15 +65,18 @@ export class TruckComponent implements OnInit {
     this.api.deleteTruck(id)
       .subscribe({
         next:(res)=>{
-          alert("Truck Deleted Successfully")
-          this.getAllTrucks();
+          var result = confirm("are you sure you want to delete this?");
+          if(result)  {
+              alert("Truck Deleted Successfully!");
+              this.getAllTrucks();
+          }
         },
         error:()=>{
           alert("Error while deleting the truck!!")
         }
       })
   }
-
+  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

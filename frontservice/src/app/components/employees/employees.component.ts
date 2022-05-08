@@ -67,8 +67,14 @@ export class EmployeesComponent implements OnInit {
 
       .subscribe({
         next:(res)=>{
-          alert("Product Deleted Successfully")
-          this.getAllProducts();
+
+          var result = confirm("are you sure you want to delete this?");
+          if(result)  {
+              alert("employee Deleted Successfully!");
+              this.getAllProducts();
+          }
+
+          
         },
         error:()=>{
           alert("Error while deleting the product!!")

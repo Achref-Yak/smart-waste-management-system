@@ -80,8 +80,12 @@ export class TrushComponent implements OnInit {
     this.api.deleteTrush(id)
       .subscribe({
         next:(res)=>{
-          alert("Truck Deleted Successfully")
-          this.getAllTrushs();
+          var result = confirm("are you sure you want to delete this?");
+          if(result)  {
+              alert("Trash Deleted Successfully!");
+              this.getAllTrushs();
+          }
+
         },
         error:()=>{
           alert("Error while deleting the truck!!")

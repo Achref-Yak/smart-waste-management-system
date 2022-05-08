@@ -12,7 +12,7 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit {
-  displayedColumns: string[] = ['clientCIN', 'clientName', 'clientEmail', 'clientAdresss', 'client_trushSize', 'clientType', 'action'];
+  displayedColumns: string[] = ['clientCIN', 'clientName', 'clientEmail', 'clientAddress', 'client_trushSize', 'clientType','client_trash_id', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -65,8 +65,14 @@ export class ClientComponent implements OnInit {
 
       .subscribe({
         next:(res)=>{
-          alert("client Deleted Successfully")
-          this.getAllClients();
+
+          var result = confirm("are you sure you want to delete this?");
+          if(result)  {
+              alert("client Deleted Successfully!");
+              this.getAllClients();
+          }
+
+          
         },
         error:()=>{
           alert("Error while deleting the client!!")
