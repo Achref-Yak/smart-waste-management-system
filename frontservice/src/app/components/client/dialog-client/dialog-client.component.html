@@ -1,50 +1,78 @@
 <h1 mat-dialog-title>Add Client Form</h1>
 <div mat-dialog-content>
-      <form [formGroup]="clientForm" >
+      <form [formGroup]="clientForm"  (ngSubmit)="addClient()">
 
         <mat-form-field appearance="outline">
             <mat-label>CIN</mat-label>
-            <input formControlName="clientCIN" matInput placeholder="CIN">
+            <input formControlName="clientCIN" matInput placeholder="CIN" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.clientCIN.errors }">
+           
           </mat-form-field>
+          <mat-error *ngIf="submitted && f.clientCIN.errors" class="invalid-feedback">
+            <div *ngIf="f.clientCIN.errors.required ">Cin is required</div>
+            <div *ngIf="f.clientCIN.errors.minLength || f.clientCIN.errors.maxLength || f.clientCIN.errors.pattern">Cin must be at least 8 number</div>
+            
+          </mat-error>
   
 
         <mat-form-field appearance="outline">
           <mat-label>Name&LastName</mat-label>
-          <input formControlName="clientName" matInput placeholder="Name&LastName">
+          <input formControlName="clientName" matInput placeholder="Full Name"
+          [ngClass]="{ 'is-invalid': submitted && f.clientName.errors }">
         </mat-form-field>
+        <mat-error *ngIf="submitted && f.clientName.errors" class="invalid-feedback">
+          <div *ngIf="f.clientName.errors.required">First Name is required</div>
+        </mat-error>
 
         
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input formControlName="clientEmail" matInput placeholder="Email">
+          <input formControlName="clientEmail" matInput class="form-control" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.clientEmail.errors }" >
         </mat-form-field>
+        <mat-error *ngIf="submitted && f.clientEmail.errors" class="invalid-feedback">
+          <div *ngIf="f.clientEmail.errors.required ">email is required</div>
+          <div *ngIf="f.clientEmail.errors.email">Email must be a valid email address</div>
+          
+        </mat-error>
 
 
         <mat-form-field appearance="outline">
             <mat-label>Address</mat-label>
-            <input formControlName="clientAddress" matInput placeholder="Address">
+            <input formControlName="clientAddress" matInput placeholder="Address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.clientAddress.errors }">        
           </mat-form-field>
-
-
+          <mat-error *ngIf="submitted && f.clientAddress.errors" class="invalid-feedback">
+            <div *ngIf="f.clientAddress.errors.required ">address is required</div>
+          </mat-error>
+  
         <label for=""><h1>client_trushSize</h1></label>
-        <mat-radio-group formControlName="client_trushSize"  class="example-radio-group">
+        <mat-radio-group formControlName="client_trushSize"  class="example-radio-group" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.client_trushSize.errors }">
           <mat-radio-button class="example-radio-button" *ngFor="let trash of trushSize" [value]="trash">
             {{trash}}
 
           </mat-radio-button>
         </mat-radio-group>
+        <mat-error *ngIf="submitted && f.client_trushSize.errors" class="invalid-feedback">
+          <div *ngIf="f.client_trushSize.errors.required ">trash size is required</div>
+        </mat-error>
 
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" >
             <mat-label>clientType</mat-label>
-            <input formControlName="clientType" matInput placeholder="clientType">
+            <input formControlName="clientType" matInput placeholder="clientType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.clientType.errors }">
           </mat-form-field>
+          <mat-error *ngIf="submitted && f.clientType.errors" class="invalid-feedback">
+            <div *ngIf="f.clientType.errors.required ">client type is required</div>
+            
+          </mat-error>
 
 
           <mat-form-field appearance="outline">
             <mat-label>trash_id</mat-label>
-            <input formControlName="client_trash_id" matInput placeholder="client_trash_id">
+            <input formControlName="client_trash_id" matInput placeholder="client_trash_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.client_trash_id.errors }">
           </mat-form-field>  
+          <mat-error *ngIf="submitted && f.client_trash_id.errors" class="invalid-feedback">
+            <div *ngIf="f.client_trash_id.errors.required ">trash-id is required</div>    
+          </mat-error>
+
 
         
 

@@ -12,6 +12,7 @@ export class DialogTrushComponent implements OnInit {
 
   trashList = ["Small", "Medium", "Big"]
   trashForm !: FormGroup;
+  submitted = false ;
   actionBtnTrash : string = "Save"
   constructor(private formBuilder : FormBuilder,
               private api : RessourcesService,
@@ -35,7 +36,9 @@ export class DialogTrushComponent implements OnInit {
       this.trashForm.controls['date'].setValue(this.editDataTrash.date);
     }
   }
+  
   addTrash(){
+    this.submitted = true;
     if(!this.editDataTrash){
       if(this.trashForm.valid){
         this.api.postTrush(this.trashForm.value)
@@ -56,6 +59,7 @@ export class DialogTrushComponent implements OnInit {
       this.updateTrush()
     }
   }
+  get f() { return this.trashForm.controls; }
   updateTrush(){
     this.api.putTrush(this.trashForm.value,this.editDataTrash.id)
       .subscribe({

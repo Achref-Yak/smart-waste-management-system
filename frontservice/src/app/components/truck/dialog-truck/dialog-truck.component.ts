@@ -13,6 +13,7 @@ export class DialogTruckComponent implements OnInit {
 
   truckList = ["Brand New", "Second Hand", "Refurbished"]
   nameList;
+  submitted = false ;
   nameFromTruck;
   employeeList:Array<{
   Name : string;
@@ -90,8 +91,10 @@ export class DialogTruckComponent implements OnInit {
       })
 
   }
+  get f() { return this.truckForm.controls; }
 
   addTruck(){
+    this.submitted = true;
     if(!this.editDataTruck){
       if(this.truckForm.valid){
         this.api.postTruck(this.truckForm.value)

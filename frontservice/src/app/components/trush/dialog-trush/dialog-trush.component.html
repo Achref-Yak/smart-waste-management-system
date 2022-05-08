@@ -1,37 +1,53 @@
 <h1 mat-dialog-title>Add Trush Form</h1>
 <div mat-dialog-content>
-  <form [formGroup]="trashForm" >
+  <form [formGroup]="trashForm" (ngSubmit)="addTrash()" >
+    <label for=""><h1>Location</h1></label>
 
     <mat-form-field appearance="outline">
       <mat-label>id</mat-label>
-      <input formControlName="_id" matInput placeholder="_id">
+      <input formControlName="_id" matInput placeholder="_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f._id.errors }">
     </mat-form-field>
-    <label for=""><h1>Location</h1></label>
+
+    <mat-error *ngIf="submitted && f._id.errors" class="alerte alerte-danger">
+      <span *ngIf="f._id.errors.required ">id is required</span> 
+    </mat-error>
     <mat-form-field appearance="outline">
       <mat-label>Longitude</mat-label>
+      <input formControlName="longitude" matInput placeholder="longitude" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.longitude.errors }">
 
-      <input formControlName="longitude" matInput placeholder="longitude">
     </mat-form-field>
+    <mat-error *ngIf="submitted && f.longitude.errors" class="alerte alerte-danger">
+      <span *ngIf="f.longitude.errors.required ">longitude is required</span> 
+    </mat-error>
 
     <mat-form-field appearance="outline">
       <mat-label>Latitude</mat-label>
-      <input formControlName="latitude" matInput placeholder="latitude">
+      <input formControlName="latitude" matInput placeholder="latitude"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.latitude.errors }">
     </mat-form-field>
+    <mat-error *ngIf="submitted && f.latitude.errors" class="alerte alerte-danger">
+      <span *ngIf="f.latitude.errors.required ">latitude is required</span> 
+    </mat-error>
 
     <label for=""><h1>Size</h1></label>
-    <mat-radio-group formControlName="size"  class="example-radio-group">
+    <mat-radio-group formControlName="size"  class="example-radio-group" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.size.errors }">
       <mat-radio-button class="example-radio-button" *ngFor="let size of trashList" [value]="size">
         {{size}}
 
       </mat-radio-button>
+      <mat-error *ngIf="submitted && f.size.errors" class="alerte alerte-danger">
+        <span *ngIf="f.size.errors.required ">size is required</span> 
+      </mat-error>
     </mat-radio-group>
 
     <mat-form-field appearance="outline">
       <mat-label>Choose a date</mat-label>
-      <input formControlName="date" matInput [matDatepicker]="picker">
+      <input formControlName="date" matInput [matDatepicker]="picker" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.date.errors }">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+    <mat-error *ngIf="submitted && f.date.errors" class="alerte alerte-danger">
+      <span *ngIf="f.date.errors.required ">date is required</span> 
+    </mat-error>
 
   </form>
 
