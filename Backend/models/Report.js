@@ -5,7 +5,8 @@ const reportSchema = mongoose.Schema({
         Email: { type: String, required: true },      
         Subject: { type: String, required: true },
         Content: { type: String, required: true },
-        Location: { type: String, required: true },
+        longitude: { type: String, required: true },
+        latitude: { type: String, required: true },
     })
 
 ;

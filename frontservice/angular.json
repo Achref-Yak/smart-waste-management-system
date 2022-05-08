@@ -30,7 +30,7 @@
             "styles": [
               "node_modules/leaflet/dist/leaflet.css",
               "src/styles.css",
-
+              "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/ngx-toastr/toastr.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
@@ -71,7 +71,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "styles": ["../node_modules/leaflet/dist/leaflet.css", "styles.css"],
+          "styles": [
+            "../node_modules/leaflet/dist/leaflet.css",
+            "styles.css",
+            "node_modules/bootstrap/dist/css/bootstrap.css"
+          ],
 
           "configurations": {
             "production": {
@@ -104,6 +108,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-toastr/toastr.css"

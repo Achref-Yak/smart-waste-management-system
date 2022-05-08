@@ -18,6 +18,7 @@ import {LoginParentComponent} from "./components/login-parent/login-parent.compo
 import {TrushComponent} from "./components/trush/trush.component";
 import {ClientComponent} from "./components/client/client.component";
 import {ReportListComponent} from "./components/report/report-list/report-list.component";
+import {HomepComponent} from "./components/home/homep/homep.component";
 export const dashboardRoutes  = [
   {
     path: 'employees', // child route path
@@ -55,11 +56,17 @@ export const dashboardRoutes  = [
   label: 'map',
 
 }]
+export const HomePage  = [
+  {path:'',component:HomepComponent},
 
-export const routes  = [{
+
+]
+export const routes  = [
+  {
   path: '',
   component: HomeComponent,
  // canActivate: [AuthGuardService]
+  children: HomePage
 },
 {
   path: 'forgotpassword',
@@ -90,6 +97,7 @@ export const routes  = [{
   label: 'admin',
   children: dashboardRoutes,
 }
+
 
 ];
 

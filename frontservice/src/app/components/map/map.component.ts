@@ -56,12 +56,13 @@ export class MapComponent implements AfterViewInit {
     this.api.getTrush().subscribe(params =>{
 
       this.trash = params;
-      console.log(this.trash[0]._id);
+
     })
+
     this.trashService.getAwsTrash().subscribe(data => {
 
 
-      console.log(data);
+     // console.log(data);
       this.sensorsData = data;
 
 let point = {
@@ -84,6 +85,7 @@ getPercentage(distance)
 {
   return (1 - parseFloat(distance)/ 50)*100
 }
+
   setMarkers()
   {
 
@@ -100,11 +102,12 @@ getPercentage(distance)
   if(this.trash[j]._id==this.sensorsData[i].id)
   {
     let adress
+    console.log(this.trash);
     this.api.getAdress(this.trash[j].longitude, this.trash[j].latitude ).subscribe( data => {
         this.adress = data
-      
+
         this.adress = this.adress.results[2].formatted_address;
-        console.log(this.adress);
+
 
 
         const message = "id:" + this.sensorsData[i].id + "</br> Adress: "+ this.adress! + "</br> Level: " + this.getPercentage(this.sensorsData[i].distance)  + "% </br> Air : "  + this.sensorsData[i].gaz + "</br> " ;
@@ -113,7 +116,7 @@ getPercentage(distance)
     this.points.lat =this.trash[j].latitude;
     this.points.lon = this.trash[j].longitude;
     this.points.push(this.points);
- 
+
     var iconFull = L.icon({
       iconUrl: 'assets/Full.png',
       iconSize: [30, 30],
@@ -161,7 +164,7 @@ getPercentage(distance)
     });
 
     })
-    
+
   }
   }
 }
@@ -176,7 +179,7 @@ getPercentage(distance)
     this.initMap();
     this.subject.subscribe(
       msg => {
-        console.log(msg);
+        //console.log(msg);
 
         this.sensorsData.push(msg)
         this.setMarkers();

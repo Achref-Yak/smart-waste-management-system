@@ -1,13 +1,15 @@
 <h1 mat-dialog-title>Add Trush Form</h1>
 <div mat-dialog-content>
   <form [formGroup]="trashForm" >
-    <label for=""><h1>Location</h1></label>
+
     <mat-form-field appearance="outline">
       <mat-label>id</mat-label>
       <input formControlName="_id" matInput placeholder="_id">
     </mat-form-field>
+    <label for=""><h1>Location</h1></label>
     <mat-form-field appearance="outline">
       <mat-label>Longitude</mat-label>
+
       <input formControlName="longitude" matInput placeholder="longitude">
     </mat-form-field>
 
