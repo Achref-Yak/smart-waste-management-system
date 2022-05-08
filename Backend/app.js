@@ -2,13 +2,21 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 var path = require('path');
+const nodemailer = require('nodemailer');
 const employeeRoutes = require('./routes/employee')
 const truckRoutes = require('./routes/truck')
 const trashRoutes = require ('./routes/trash')
+const reportRoutes = require ('./routes/report')
+const clientRoutes = require ('./routes/client')
+
+
+
 
 
 const app = express();
+ 
 mongoose.connect('mongodb+srv://achdb:gxEDiui60yGqQ27N@cluster0.ywcqk.mongodb.net/Cluster0?retryWrites=true&w=majority',
+ 
     { useNewUrlParser: true,
         useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -29,4 +37,43 @@ app.use(bodyParser.json());
 app.use('/productList', employeeRoutes);
 app.use('/truckList', truckRoutes);
 app.use('/trashList',trashRoutes);
+app.use('/reportList',reportRoutes);
+app.use('/clientList',clientRoutes);
+
+//#region SEND MAIL
+app.post("/mail",(req, res) => {
+    // Step 1
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'trash.net00@gmail.com', // TODO: your gmail account
+            pass: 'trashnet123' // TODO: your gmail password
+        }
+    });
+
+    // Step 2
+    let mailOptions = {
+        from: 'trash.net00@gmail.com', // TODO: email sender
+        to: req.body.Email,
+        subject: 'Trash Monitoring System',
+        text: 'hello !! Thank you!!!',
+        html: '<h1 style="color:blue;">  Trash-Net Tunisia  &#128151;</h1><p style="text-align-all: center"><br> Hello Your complaint has been taken into consideration!<br>' +
+            ' we will try to fix the problem as soon as possible </p>' +
+            '<img src="https://raw.githubusercontent.com/Achref-Yak/smarttrash-microservices/main/frontservice/src/assets/Trashnet.png?token=GHSAT0AAAAAABRDXCUGAKRQQZLTL3FT2AH6YTTDRIQ">'+
+            '<h6>this is an automatic mail do not reply</h6>'
+            
+    };
+
+    // Step 3
+    transporter.sendMail(mailOptions, (err, data) => {
+        if (err) {
+            return console.log('Error occurs');
+        }
+        return console.log('Email sent!!!');
+    });
+});
+//endregion
+
+
+
 module.exports = app;

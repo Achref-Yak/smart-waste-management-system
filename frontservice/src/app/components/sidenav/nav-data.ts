@@ -36,10 +36,15 @@ export const navbarData = [
 
   {
     routeLink :'clients',
-    icon : 'fas fa-user-edit',
+    icon : 'fal fa-user-edit',
     label : 'Client'
   },
-
+  {
+    routeLink :'reports',
+    icon : 'fal fa-comments', 
+    label : 'Report'
+  },
+  
  {
     routeLink :'',
     icon : 'fal fa-sign-out',

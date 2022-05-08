@@ -25,7 +25,8 @@ export class DialogClientComponent implements OnInit {
       clientAddress : ['',Validators.required],
       clientType : ['',Validators.required],
       clientCIN : ['',Validators.required],
-      client_trushSize : ['',Validators.required]
+      client_trushSize : ['',Validators.required],
+      client_trash_id : ['',Validators.required]
     })
     if (this.editData){
       this.actionBtn="Update"
@@ -35,6 +36,7 @@ export class DialogClientComponent implements OnInit {
       this.clientForm.controls['clientType'].setValue(this.editData.clientType);
       this.clientForm.controls['clientCIN'].setValue(this.editData.clientCIN);
       this.clientForm.controls['client_trushSize'].setValue(this.editData.client_trushSize);
+      this.clientForm.controls['client_trash-id'].setValue(this.editData.client_trash_id);
     }
   }
   addClient(){

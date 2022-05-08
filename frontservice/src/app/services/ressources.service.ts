@@ -73,17 +73,38 @@ export class RessourcesService {
 
 
   postClient(data : any){
-    return this.http.post<any>("http://localhost:3000/ClientList/",data);
+    return this.http.post<any>("http://localhost:3000/clientlist/",data);
   }
   getClient(){
-    return this.http.get<any>("http://localhost:3000/ClientList/");
+    return this.http.get<any>("http://localhost:3000/clientlist/");
   }
   putClient(data:any, id : number){
-    return this.http.put<any>("http://localhost:3000/ClientList/"+id, data);
+    return this.http.put<any>("http://localhost:3000/clientlist/"+id, data);
 
   }
   deleteClient(id:number){
-    return this.http.delete<any>("http://localhost:3000/ClientList/"+id);
+    return this.http.delete<any>("http://localhost:3000/clientlist/"+id);
+  }
+
+
+
+  postReport(data : any){
+    return this.http.post<any>("http://localhost:3000/ReportList/",data);
+  }
+
+  postMail(uri: string, data: object){
+    return this.http.post<any>("http://localhost:3000/mail",data);
+  }
+
+  getReport(){
+    return this.http.get<any>("http://localhost:3000/ReportList/");
+  }
+  putReport(data:any, id : number){
+    return this.http.put<any>("http://localhost:3000/ReportList/"+id, data);
+
+  }
+  deleteReport(id:number){
+    return this.http.delete<any>("http://localhost:3000/ReportList/"+id);
   }
 
 

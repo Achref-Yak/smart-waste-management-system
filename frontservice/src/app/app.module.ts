@@ -35,7 +35,9 @@ import { LoginParentComponent } from './components/login-parent/login-parent.com
 import { MarkerService } from './marker.service';
 import { ClientComponent } from './components/client/client.component';
 import { DialogClientComponent } from './components/client/dialog-client/dialog-client.component';
-
+import { ReportComponent } from './components/report/report.component';
+import { DialogReportComponent } from './components/report/dialog-report/dialog-report.component';
+import { ReportListComponent } from './components/report/report-list/report-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +61,11 @@ import { DialogClientComponent } from './components/client/dialog-client/dialog-
     DialogTrushComponent,
     DialogTruckComponent,
     ClientComponent,
-    DialogClientComponent
+    DialogClientComponent,
+    ReportComponent,
+    DialogReportComponent,
+    ReportListComponent,
+
 
    ],
    imports: [

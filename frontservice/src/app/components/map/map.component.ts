@@ -20,6 +20,7 @@ export class MapComponent implements AfterViewInit {
   points;
   trash;
   adress;
+  report;
   markers: Array<{
     id: string;
     lat: number,
@@ -46,8 +47,10 @@ export class MapComponent implements AfterViewInit {
 
 
     this.map = L.map('map', {
+ 
       center: [35.766154, 10.823634],
       zoom: 8.5
+ 
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -69,17 +72,65 @@ export class MapComponent implements AfterViewInit {
   constructor(private trashService: TrashService, private api: RessourcesService) {
 
   }
+ 
+getAllReport(){
+    this.api.getReport().subscribe(params=>{
+      this.report = params;
+      for (let j=0; j < this.report.length ;j++){
+        this.api.getAdress(this.report[j].longitude, this.report[j].latitude ).subscribe( data => {
+          this.adress = data
 
-  getAllAWStrash() {
-    this.api.getTrush().subscribe(params => {
+          this.adress = this.adress.results[2].formatted_address;
+
+            console.log(this.report)
+
+          const message = "id:" + this.report[j]._id + "</br> Adress: "+ this.adress! + "</br> Content: " + this.report[j].Content   ;
+          this.points = [];
+          this.points.message = message
+          this.points.lat =this.report[j].latitude;
+          this.points.lon = this.report[j].longitude;
+          this.points.push(this.points);
+          var iconFull = L.icon({
+            iconUrl: 'assets/report .png',
+            iconSize: [30, 30],
+          });
+
+          this.points.forEach(element => {
+
+
+              let icon = iconFull;
+              var geojsonPoint: geojson.Point = {
+                type: 'Point',
+                coordinates: [element.lat,element.lon],
+              };
+              var marker = L.geoJSON(geojsonPoint, {
+
+                pointToLayer: (point,latlon)=> {
+                  return L.marker(latlon, {icon: icon})
+                }
+              });
+              //Add popup message
+              marker.bindPopup(element.message);
+              marker.addTo(this.map);
+
+
+          });
+      })}
+    })
+}
+  getAllAWStrash()
+  {
+    this.api.getTrush().subscribe(params =>{
+ 
 
       this.trash = params;
-      console.log(this.trash[0]._id);
+
     })
+
     this.trashService.getAwsTrash().subscribe(data => {
 
 
-      console.log(data);
+     // console.log(data);
       this.sensorsData = data;
 
       let point = {
@@ -98,14 +149,25 @@ export class MapComponent implements AfterViewInit {
   }
 
 
+ 
+getPercentage(distance)
+{
+  return (1 - parseFloat(distance)/ 50)*100
+}
+
+  setMarkers()
+  {
+=======
   getPercentage(distance) {
     return (1 - parseFloat(distance) / 50) * 100
   }
   setMarkers() {
+ 
 
     this.markers = [];
     this.points = this.markers;
 
+ 
     //this.markers.push(point);
 
     // this.markers.forEach(element => {
@@ -197,22 +259,49 @@ export class MapComponent implements AfterViewInit {
 
           })
 
+ 
         }
       }
-    }
-    // })
-    ;
+ 
+      else {
+        let icon = iconEmpty
+        var geojsonPoint: geojson.Point = {
+          type: 'Point',
+          coordinates: [element.lat,element.lon],
+        };
+        var marker = L.geoJSON(geojsonPoint, {
+
+          pointToLayer: (point,latlon)=> {
+            return L.marker(latlon, {icon: icon})
+          }
+        });
+        //Add popup message
+        marker.bindPopup(element.message);
+        marker.addTo(this.map);
+      }
+
+
+    });
+
+    })
+
+  }
+  }
+}
+// })
+;
+ 
   }
 
   ngAfterViewInit(): void {
 
     this.getAllAWStrash();
-
+    this.getAllReport()
 
     this.initMap();
     this.subject.subscribe(
       msg => {
-        console.log(msg);
+        //console.log(msg);
 
         this.sensorsData.push(msg)
         this.setMarkers();
