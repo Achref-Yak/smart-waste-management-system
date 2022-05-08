@@ -7,7 +7,7 @@ declare interface RouteInfo {
 }
 export const navbarData = [
   {
-    routeLink :'.',
+    routeLink :'dash',
     icon : 'fal fa-home',
     label : 'Dashboard'
   },

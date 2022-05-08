@@ -13,6 +13,7 @@ export class DialogClientComponent implements OnInit {
   trushSize = ["Small", "Meduim", "Big"]
   clientForm !: FormGroup;
   actionBtn : string = "Save"
+  submitted = false ;
   constructor(private formBuilder : FormBuilder,
               private api : RessourcesService,
               @Inject(MAT_DIALOG_DATA) public editData : any,
@@ -21,10 +22,10 @@ export class DialogClientComponent implements OnInit {
   ngOnInit(): void {
     this.clientForm = this.formBuilder.group({
       clientName : ['',Validators.required],
-      clientEmail : ['',Validators.required],
+      clientEmail : ['',[Validators.required,Validators.email]],
       clientAddress : ['',Validators.required],
       clientType : ['',Validators.required],
-      clientCIN : ['',Validators.required],
+      clientCIN : ['',[Validators.required, Validators.minLength(8), Validators.maxLength(8),Validators.pattern("^[0-9]*$")]],
       client_trushSize : ['',Validators.required],
       client_trash_id : ['',Validators.required]
     })
@@ -38,8 +39,11 @@ export class DialogClientComponent implements OnInit {
       this.clientForm.controls['client_trushSize'].setValue(this.editData.client_trushSize);
       this.clientForm.controls['client_trash-id'].setValue(this.editData.client_trash_id);
     }
+    
   }
+  get f() { return this.clientForm.controls; }
   addClient(){
+    this.submitted = true;
     if(!this.editData){
       if(this.clientForm.valid){
         this.api.postClient(this.clientForm.value)

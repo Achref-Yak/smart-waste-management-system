@@ -12,6 +12,7 @@ export class DialogComponent implements OnInit {
   jobList = ["Brand New", "Second Hand", "Refurbished"]
   productForm !: FormGroup;
   actionBtn : string = "Save"
+  submitted = false ;
   constructor(private formBuilder : FormBuilder,
               private api : RessourcesService,
               @Inject(MAT_DIALOG_DATA) public editData : any,
@@ -20,10 +21,10 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
       employeeName : ['',Validators.required],
-      employeeEmail : ['',Validators.required],
+      employeeEmail : ['',[Validators.required,Validators.email]],
       employeeJob : ['',Validators.required],
       employeeSalary : ['',Validators.required],
-      employeeCIN : ['',Validators.required],
+      employeeCIN : ['',[Validators.required, Validators.minLength(8), Validators.maxLength(8),Validators.pattern("^[0-9]*$")]],
       date : ['',Validators.required]
     })
     if (this.editData){
@@ -36,7 +37,10 @@ export class DialogComponent implements OnInit {
       this.productForm.controls['date'].setValue(this.editData.date);
     }
   }
+  get f() { return this.productForm.controls; }
+
   addProduct(){
+    this.submitted = true;
     if(!this.editData){
       if(this.productForm.valid){
         this.api.postProduct(this.productForm.value)

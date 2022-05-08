@@ -38,6 +38,8 @@ import { DialogClientComponent } from './components/client/dialog-client/dialog-
 import { ReportComponent } from './components/report/report.component';
 import { DialogReportComponent } from './components/report/dialog-report/dialog-report.component';
 import { ReportListComponent } from './components/report/report-list/report-list.component';
+import { DashChartComponent } from './components/dash-chart/dash-chart.component';
+//import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import { ReportListComponent } from './components/report/report-list/report-list
     DialogClientComponent,
     ReportComponent,
     DialogReportComponent,
-    ReportListComponent
+    ReportListComponent,
+    DashChartComponent
 
    ],
    imports: [
@@ -82,7 +85,9 @@ import { ReportListComponent } from './components/report/report-list/report-list
     NglTileLayerModule,
     NglCoreModule,
     NgbModule,
+    
     ToastrModule.forRoot(), // ToastrModule added
+    
   ],
   providers: [
     MarkerService,

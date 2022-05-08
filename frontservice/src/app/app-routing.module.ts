@@ -18,7 +18,14 @@ import {LoginParentComponent} from "./components/login-parent/login-parent.compo
 import {TrushComponent} from "./components/trush/trush.component";
 import {ClientComponent} from "./components/client/client.component";
 import {ReportListComponent} from "./components/report/report-list/report-list.component";
+import {DashChartComponent} from "./components/dash-chart/dash-chart.component";
 export const dashboardRoutes  = [
+  {
+    path: 'dash', // child route path
+    component: DashChartComponent, // child route component that the router renders
+    label: 'dashboard',
+
+  },
   {
     path: 'employees', // child route path
     component: EmployeesComponent, // child route component that the router renders
@@ -57,7 +64,7 @@ export const dashboardRoutes  = [
 }]
 
 export const routes  = [{
-  path: '',
+  path: 'home',
   component: HomeComponent,
  // canActivate: [AuthGuardService]
 },
