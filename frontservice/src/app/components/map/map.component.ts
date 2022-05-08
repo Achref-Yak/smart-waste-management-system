@@ -2,11 +2,11 @@ import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import * as geojson from 'geojson';
 import { TrashService } from 'src/app/services/Trash.service';
-import {RessourcesService} from "../../services/ressources.service";
+import { RessourcesService } from "../../services/ressources.service";
 import { webSocket } from 'rxjs/webSocket';
 
-import {debounce} from "rxjs";
-import {icon, marker} from "leaflet";
+import { debounce } from "rxjs";
+import { icon, marker } from "leaflet";
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -15,6 +15,7 @@ import {icon, marker} from "leaflet";
 export class MapComponent implements AfterViewInit {
   private map;
   sensorsData;
+  prediction;
   subject = webSocket("wss://21t9ayt5cf.execute-api.us-west-2.amazonaws.com/production");
   points;
   trash;
@@ -27,10 +28,29 @@ export class MapComponent implements AfterViewInit {
     message: string
   }> = []
 
+
+
+
+
+  getPrediction() {
+    this.api.postPrediction(1, 4, 40, 40).subscribe(data => {
+      console.log(data);
+      this.prediction = data;
+
+    })
+
+
+  }
+
   private initMap(): void {
+
+
+
     this.map = L.map('map', {
-      center: [ 36.898487,10.188072],
-      zoom: 30
+ 
+      center: [35.766154, 10.823634],
+      zoom: 8.5
+ 
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -40,17 +60,19 @@ export class MapComponent implements AfterViewInit {
     });
 
     tiles.addTo(this.map);
-    this.map.on('click', function(e) {
+    this.map.on('click', function (e) {
       alert("You clicked the map at " + e.latlng.toString());
 
-    } );
+
+    });
 
 
   }
 
-  constructor(private trashService: TrashService,private api : RessourcesService ) {
+  constructor(private trashService: TrashService, private api: RessourcesService) {
 
   }
+ 
 getAllReport(){
     this.api.getReport().subscribe(params=>{
       this.report = params;
@@ -99,6 +121,7 @@ getAllReport(){
   getAllAWStrash()
   {
     this.api.getTrush().subscribe(params =>{
+ 
 
       this.trash = params;
 
@@ -110,22 +133,23 @@ getAllReport(){
      // console.log(data);
       this.sensorsData = data;
 
-let point = {
-  "id": "9",
-  "lat": 10.208476,
-  "lon": 36.701448,
-  "message": "level: high",
-}
+      let point = {
+        "id": "9",
+        "lat": 10.208476,
+        "lon": 36.701448,
+        "message": "level: high",
+      }
 
-this.setMarkers();
+      this.setMarkers();
 
- // Add custom icon
+      // Add custom icon
 
 
     });
   }
 
 
+ 
 getPercentage(distance)
 {
   return (1 - parseFloat(distance)/ 50)*100
@@ -133,61 +157,112 @@ getPercentage(distance)
 
   setMarkers()
   {
+=======
+  getPercentage(distance) {
+    return (1 - parseFloat(distance) / 50) * 100
+  }
+  setMarkers() {
+ 
 
     this.markers = [];
     this.points = this.markers;
 
-//this.markers.push(point);
+ 
+    //this.markers.push(point);
 
-// this.markers.forEach(element => {
-
-
- for (let i=0; i < this.sensorsData.length ; i++){
-  for (let j=0; j < this.trash.length ;j++){
-  if(this.trash[j]._id==this.sensorsData[i].id)
-  {
-    let adress
-    console.log(this.trash);
-    this.api.getAdress(this.trash[j].longitude, this.trash[j].latitude ).subscribe( data => {
-        this.adress = data
-
-        this.adress = this.adress.results[2].formatted_address;
+    // this.markers.forEach(element => {
 
 
+    for (let i = 0; i < this.sensorsData.length; i++) {
+      for (let j = 0; j < this.trash.length; j++) {
+        if (this.trash[j]._id == this.sensorsData[i].id) {
+          let adress
+          this.api.getAdress(this.trash[j].longitude, this.trash[j].latitude).subscribe(data => {
+            this.adress = data
 
-        const message = "id:" + this.sensorsData[i].id + "</br> Adress: "+ this.adress! + "</br> Level: " + this.getPercentage(this.sensorsData[i].distance)  + "% </br> Air : "  + this.sensorsData[i].gaz + "</br> " ;
-    this.points = [];
-    this.points.message = message
-    this.points.lat =this.trash[j].latitude;
-    this.points.lon = this.trash[j].longitude;
-    this.points.push(this.points);
+            this.adress = this.adress.results[2].formatted_address;
+            console.log(this.adress);
+            let perc = this.getPercentage(this.sensorsData[i].distance);
+            this.api.postPrediction(1, 4, perc, perc +10).subscribe(data => {
+              console.log(data);
+            
+              this.prediction = data;
+              const message = "id:" + this.sensorsData[i].id + "</br> Adress: " + this.adress! + "</br> Level: " + perc + "% </br> Air : " + this.sensorsData[i].gaz + "</br> Expected : " + this.prediction!.data + "%";
+              this.points = [];
+              this.points.message = message
+              this.points.lat = this.trash[j].latitude;
+              this.points.lon = this.trash[j].longitude;
+              this.points.push(this.points);
+  
+              var iconFull = L.icon({
+                iconUrl: 'assets/Full.png',
+                iconSize: [30, 30],
+              });
+              var iconEmpty = L.icon({
+                iconUrl: 'assets/Empty.png',
+                iconSize: [30, 30],
+              });
+  
+              let positions = "";
+              this.trash.forEach(mark => {
+                let str = mark.longitude + "," + mark.latitude + "|";
+                positions += str;
+  
+              })
+              positions = positions.slice(0, -1);
+              this.api.getMultipleDestinations(positions!, 35.133606, 10.616638).subscribe(data => {
+                console.log(data);
+          
+              })
+  
+              console.log(positions);
+  
+              this.points.forEach(element => {
+  
+                if (this.sensorsData[i].distance < 50) {
+                  let icon = iconFull;
+                  var geojsonPoint: geojson.Point = {
+                    type: 'Point',
+                    coordinates: [element.lat, element.lon],
+                  };
+                  var marker = L.geoJSON(geojsonPoint, {
+  
+                    pointToLayer: (point, latlon) => {
+                      return L.marker(latlon, { icon: icon })
+                    }
+                  });
+                  //Add popup message
+                  marker.bindPopup(element.message);
+                  marker.addTo(this.map);
+                }
+                else {
+                  let icon = iconEmpty
+                  var geojsonPoint: geojson.Point = {
+                    type: 'Point',
+                    coordinates: [element.lat, element.lon],
+                  };
+                  var marker = L.geoJSON(geojsonPoint, {
+  
+                    pointToLayer: (point, latlon) => {
+                      return L.marker(latlon, { icon: icon })
+                    }
+                  });
+                  //Add popup message
+                  marker.bindPopup(element.message);
+                  marker.addTo(this.map);
+                }
+  
+  
+              });
+            })
+  
 
-    var iconFull = L.icon({
-      iconUrl: 'assets/Full.png',
-      iconSize: [30, 30],
-    });
-    var iconEmpty = L.icon({
-      iconUrl: 'assets/Empty.png',
-      iconSize: [30, 30],
-    });
-    this.points.forEach(element => {
+          })
 
-      if (this.sensorsData[i].distance < 50){
-          let icon = iconFull;
-      var geojsonPoint: geojson.Point = {
-        type: 'Point',
-        coordinates: [element.lat,element.lon],
-      };
-      var marker = L.geoJSON(geojsonPoint, {
-
-        pointToLayer: (point,latlon)=> {
-          return L.marker(latlon, {icon: icon})
+ 
         }
-      });
-      //Add popup message
-      marker.bindPopup(element.message);
-      marker.addTo(this.map);
       }
+ 
       else {
         let icon = iconEmpty
         var geojsonPoint: geojson.Point = {
@@ -215,9 +290,11 @@ getPercentage(distance)
 }
 // })
 ;
+ 
   }
 
   ngAfterViewInit(): void {
+
     this.getAllAWStrash();
     this.getAllReport()
 
@@ -233,5 +310,7 @@ getPercentage(distance)
       err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
       () => console.log('complete') // Called when connection is closed (for whatever reason).
     );
+
+
   }
 }

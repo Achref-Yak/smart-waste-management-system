@@ -1,0 +1,15 @@
+<table  [border]="1">
+  <tr>
+    <th >id</th>
+    <th >Adress</th>
+ 
+    <th  >Direction </th>
+  </tr>
+
+  <tr *ngFor="let trsh of destinations.message.destination_addresses; let i = index">
+    <td>{{i+1}} </td>
+    <td>{{trsh}}</td>
+ 
+    <th  ><a href="https://www.google.com/maps/search/?api=1&query={{trash[i].longitude}},{{trash[i].latitude}}">Go</a> </th>
+  </tr>
+</table>
