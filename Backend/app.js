@@ -14,7 +14,9 @@ const clientRoutes = require ('./routes/client')
 
 
 const app = express();
-mongoose.connect('mongodb+srv://wael1:SBWxkMCNrjEuW2rm@cluster0.k3wgl.mongodb.net/mrclean?retryWrites=true&w=majority',
+ 
+mongoose.connect('mongodb+srv://achdb:gxEDiui60yGqQ27N@cluster0.ywcqk.mongodb.net/Cluster0?retryWrites=true&w=majority',
+ 
     { useNewUrlParser: true,
         useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -31,6 +33,7 @@ app.use(bodyParser.json());
 // app.use('/images', express.static(path.join(__dirname, 'images')));
 // app.use('/api/stuff', stuffRoutes);
 // app.use('/api/auth', userRoutes);
+
 app.use('/productList', employeeRoutes);
 app.use('/truckList', truckRoutes);
 app.use('/trashList',trashRoutes);
