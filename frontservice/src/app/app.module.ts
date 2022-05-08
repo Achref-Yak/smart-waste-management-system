@@ -38,7 +38,6 @@ import { DialogClientComponent } from './components/client/dialog-client/dialog-
 import { ReportComponent } from './components/report/report.component';
 import { DialogReportComponent } from './components/report/dialog-report/dialog-report.component';
 import { ReportListComponent } from './components/report/report-list/report-list.component';
-import { HomepComponent } from './components/home/homep/homep.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +65,6 @@ import { HomepComponent } from './components/home/homep/homep.component';
     ReportComponent,
     DialogReportComponent,
     ReportListComponent,
-    HomepComponent,
 
 
    ],

@@ -24,16 +24,15 @@ export class DialogReportComponent implements OnInit {
               private api : RessourcesService,
               @Inject(MAT_DIALOG_DATA) public editData : any,
               private dialogRef : MatDialogRef<DialogReportComponent>) { }
- ngOnInit(): void {
+  ngOnInit(): void {
 
-      this.getPosition().subscribe(pos => {
+    this.getPosition().subscribe(pos => {
 
-        console.log(pos.coords);
+      console.log(pos.coords);
+      this.latitude = pos.coords.latitude;
+      this.longitude = pos.coords.longitude;
 
-        this.latitude = pos.coords.latitude;
-        this.longitude = pos.coords.longitude;
-
-      });
+    });
 
     this.reportForm = this.formBuilder.group({
       Name : ['',Validators.required],
@@ -52,25 +51,25 @@ export class DialogReportComponent implements OnInit {
 
   addReport(){
     console.log(this.longitude)
-      if(this.reportForm.valid){
+    if(this.reportForm.valid){
 
-        this.api.postReport(this.reportForm.value)
+      this.api.postReport(this.reportForm.value)
 
-            .subscribe({
+        .subscribe({
 
-              next:(res)=>{
-                console.log(res);
-                alert("Report added successfully")
-                this.reportForm.reset();
-                this.dialogRef.close('save');
-              },
-              error:()=>{
+          next:(res)=>{
+            console.log(res);
+            alert("Report added successfully")
+            this.reportForm.reset();
+            this.dialogRef.close('save');
+          },
+          error:()=>{
 
-                alert("Error while adding the Report")
-              }
-            })
+            alert("Error while adding the Report")
+          }
+        })
 
-      }
+    }
 
 
   }
