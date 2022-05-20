@@ -38,10 +38,10 @@ export class HomeComponent implements OnInit  {
     });
   }
   course= [
-    {'id':1,'name':'Achref Yakdhane','description':'Lorem Ipsum is simply dummy text of the printing and typesetting industry','image':'../../assets/Achref-yakdhan.jpg'},
-    {'id':2,'name':'Wael Chakchouk','description':'Lorem Ipsum is simply dummy text of the printing and typesetting industry','image':'../../assets/Wael-Chakchou1.jpg'},
-    {'id':3,'name':'Sofien Sellami','description':'Lorem Ipsum is simply dummy text of the printing and typesetting industry','image':'../../assets/Sofien-Sellami.jpg'},
-    // {'id':4,'name':'Learn Reactjs','description':'Lorem Ipsum is simply dummy text of the printing and typesetting industry','image':'../../assets/reactjs.jpg'},
+    {'id':1,'name':'Achref Yakdhane','description':'Full-Stack Developer','logo':'                                             ','social-media':'','image':'../../assets/Achref-yakdhan.jpg'},
+    {'id':2,'name':'Wael Chakchouk','description':'IT-Engineering','image':'../../assets/Wael-Chakchou1.jpg'},
+    {'id':3,'name':'Sofien Sellami','description':'Full-Stack Developer','image':'../../assets/Sofien-Sellami.jpg'},
+    {'id':4,'name':'taher bouderbela','description':'Full-Stack Developer','image':'../../assets/taher-bouderbela.jpg'},
   ]
 
 

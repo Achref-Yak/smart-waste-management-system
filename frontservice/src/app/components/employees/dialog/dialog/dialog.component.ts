@@ -9,7 +9,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
 })
 export class DialogComponent implements OnInit {
 
-  jobList = ["Brand New", "Second Hand", "Refurbished"]
+  jobList = ["Truck-Driver", "Janitor", "Collector"]
   productForm !: FormGroup;
   actionBtn : string = "Save"
   submitted = false ;

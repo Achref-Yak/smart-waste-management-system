@@ -15,7 +15,7 @@ html {
 body {
   font-family: "Public Sans", sans-serif;
   font-weight: 400;
-  color: #9698a6;
+  color: #0f26d2;
   font-size: 0.875rem;
   line-height: 1.5;
   overflow-x: hidden;
@@ -101,7 +101,7 @@ button::after,
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.298);
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -166,7 +166,7 @@ button:hover::after,
   position: relative;
   padding: 1.0625rem 0;
   z-index: 1;
-  background: white;
+  background: rgb(43, 47, 43);
 }
 
 .header nav {
@@ -188,7 +188,7 @@ button:hover::after,
     display: flex;
     flex-direction: column;
     text-align: center;
-    background: white;
+    background: rgb(121, 56, 56);
     border-radius: 0.3125rem;
     padding: 1.625rem;
     opacity: 0;
@@ -274,7 +274,7 @@ button:hover::after,
 }
 
 .hero {
-  background: #fafafa;
+  background: #c8d6c4;/*WAEL*/
 }
 
 @media (max-width: 63.9375em) {
@@ -383,7 +383,7 @@ button:hover::after,
 }
 
 .features {
-  background: #f3f4f6;
+  background: #e4fade;/*WAEL2*/
   padding: 6.25rem 0;
 }
 
@@ -518,16 +518,16 @@ button:hover::after,
 }
 
 .footer {
-  background: #2d314d;
+  background: rgb(43, 47, 43);
   color: white;
-  padding: 2.5rem;
+  padding: 1rem;
   padding-bottom: 0;
   text-align: center;
 }
 
 @media (min-width: 64em) {
   .footer {
-    padding: 3.125rem;
+    padding: 2rem;
     padding-bottom: 0;
   }
 }
@@ -689,15 +689,30 @@ button:hover::after,
 }
 .course
 {
-  background-color: #eff6ff;
+  background-color: #c8d6c4;
   padding: 50px 100px;
 }
 .box
 {
 
-  background-color: #EFF6FF;
+  background-color: #aabfa5;
   padding: 10px 20px;
 }
+.course h1 {
+  font-size: 3.5rem;
+  margin-bottom: 2.25rem;
+  font-weight: 500;
+  
+}
+.course h4 {
+
+  color: white;
+}
+.course h3 {
+
+  color: rgb(3, 65, 11);
+}
+
 
 @media screen and (max-width:600px)
 {
@@ -709,5 +724,5 @@ button:hover::after,
 }
 img {
   vertical-align: bottom;
-  border-radius: 30%;
+  border-radius: 50%;
 }

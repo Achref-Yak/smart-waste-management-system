@@ -11,7 +11,7 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class DialogTruckComponent implements OnInit {
 
-  truckList = ["Brand New", "Second Hand", "Refurbished"]
+  truckList = ["light trucks", "medium trucks", "heavy trucks"]
   nameList;
   submitted = false ;
   nameFromTruck;

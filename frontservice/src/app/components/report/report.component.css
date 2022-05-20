@@ -33,5 +33,10 @@ button:hover::after,
 .button:hover::after {
   opacity: 1;
 }
+h1 {
+  font-size: 2.25rem;
+  margin-bottom: 2.25rem;
+  font-weight: 500;
+}
 
 

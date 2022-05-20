@@ -48,8 +48,8 @@ export class MapComponent implements AfterViewInit {
 
     this.map = L.map('map', {
 
-      center: [35.766154, 10.823634],
-      zoom: 8.5
+      center: [36.902345, 10.184448],
+      zoom: 30
 
     });
 
@@ -119,7 +119,7 @@ export class MapComponent implements AfterViewInit {
           this.points.lon = this.report[j].longitude;
           this.points.push(this.points);
           var iconFull = L.icon({
-            iconUrl: 'assets/report .png',
+            iconUrl: 'assets/report.png',
             iconSize: [30, 30],
           });
 
@@ -148,7 +148,7 @@ export class MapComponent implements AfterViewInit {
 }
   
   getPercentage(distance) {
-    return (1 - parseFloat(distance) / 50) * 100
+    return (1 - parseFloat(distance) / 9) * 100
   }
   setMarkers() {
 
@@ -206,7 +206,7 @@ export class MapComponent implements AfterViewInit {
   
               this.points.forEach(element => {
   
-                if (this.sensorsData[i].distance < 25) {
+                if (this.sensorsData[i].distance < 9/2) {
                   let icon = iconFull;
                   var geojsonPoint: geojson.Point = {
                     type: 'Point',

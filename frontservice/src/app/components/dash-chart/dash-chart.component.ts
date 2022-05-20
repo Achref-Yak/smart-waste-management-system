@@ -57,7 +57,7 @@ export class DashChartComponent implements OnInit {
 
       console.log("distance",this.sensorsData[j].distance);
       
-      if(this.sensorsData[j].distance>25)
+      if(this.sensorsData[j].distance>(9/2))
       {
         greentrash ++;
         
