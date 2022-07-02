@@ -84,7 +84,7 @@ exports.getDest = (req, res, next) => {
     const lon = req.params.lon;
 
     console.log(req.url);
-    axios.get("https://maps.googleapis.com/maps/api/distancematrix/json?destinations="+multiple+"&origins="+lon+","+lat+"&key=AIzaSyBpc-W4SSnb8kM3cNDK9MYNCucHZdS7Els")
+    axios.get("https://maps.googleapis.com/maps/api/distancematrix/json?destinations="+multiple+"&origins="+lon+","+lat+"&key=")
     .then(function (response) {
 
         console.log(response);
