@@ -10,7 +10,5 @@ IoT-based Smart Sensors help you utilize technology from the beginning of your w
 
 Angular12, ExpressJs, MongoDB, AWS Iot Core, Lambda, DynamoDB, WebSocket
 
-
-
-<iframe src="https://player.vimeo.com/video/726337588?h=139d8956cb" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-<p><a href="https://vimeo.com/726337588">smartWaste.mp4</a> from <a href="https://vimeo.com/user179657088">Achref Y</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+Explainer Video
+https://vimeo.com/726337588
