@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(this.credentials).subscribe(() => {
-        this.router.navigateByUrl('/profile');
+        this.router.navigateByUrl('/admin-dashboard');
       }, err => {
         console.log(err);
       });

@@ -14,8 +14,12 @@ const clientRoutes = require ('./routes/client')
 
 
 const app = express();
- 
-mongoose.connect('mongodb+srv://achdb:gxEDiui60yGqQ27N@cluster0.ywcqk.mongodb.net/Cluster0?retryWrites=true&w=majority',
+
+require('dotenv').config({
+    path: `${__dirname}/.env`
+  })
+  console.log(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI,
  
     { useNewUrlParser: true,
         useUnifiedTopology: true })

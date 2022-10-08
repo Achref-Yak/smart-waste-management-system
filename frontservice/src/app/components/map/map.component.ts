@@ -5,8 +5,7 @@ import { TrashService } from 'src/app/services/Trash.service';
 import { RessourcesService } from "../../services/ressources.service";
 import { webSocket } from 'rxjs/webSocket';
 
-import { debounce } from "rxjs";
-import { icon, marker } from "leaflet";
+ 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -17,7 +16,7 @@ export class MapComponent implements AfterViewInit {
   private map;
   sensorsData;
   prediction;
-  subject = webSocket("wss://21t9ayt5cf.execute-api.us-west-2.amazonaws.com/production");
+  subject = webSocket(process.env.WEBSOCKET_URL);
   points;
   trash;
   adress;
@@ -93,9 +92,7 @@ export class MapComponent implements AfterViewInit {
       }
 
       this.setMarkers();
-
-      // Add custom icon
-
+ 
 
     });
   }
@@ -150,15 +147,12 @@ export class MapComponent implements AfterViewInit {
   getPercentage(distance) {
     return (1 - parseFloat(distance) / 50) * 100
   }
+
   setMarkers() {
 
     this.markers = [];
     this.points = this.markers;
-
-    //this.markers.push(point);
-
-    // this.markers.forEach(element => {
-
+ 
 
     for (let i = 0; i < this.sensorsData.length; i++) {
       for (let j = 0; j < this.trash.length; j++) {
@@ -218,6 +212,7 @@ export class MapComponent implements AfterViewInit {
                       return L.marker(latlon, { icon: icon })
                     }
                   });
+
                   //Add popup message
                   marker.bindPopup(element.message);
                   marker.addTo(this.map);
@@ -234,6 +229,7 @@ export class MapComponent implements AfterViewInit {
                       return L.marker(latlon, { icon: icon })
                     }
                   });
+
                   //Add popup message
                   marker.bindPopup(element.message);
                   marker.addTo(this.map);
