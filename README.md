@@ -1,4 +1,4 @@
-In this IoT engineering project, we have demonstrated how to trackand moitor in real-time, senors data of trash bins located in a city,
+In this IoT engineering project, we have demonstrated how to track and monitor in real-time, senors data of trash bins located in a city,
 
 This project used MEAN Stack for application development.
 
