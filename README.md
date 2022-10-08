@@ -1,0 +1,16 @@
+In this IoT engineering project, we have demonstrated how to trackand moitor in real-time, senors data of trash bins located in a city,
+
+This project used MEAN Stack for application development.
+
+WebSockets for real-time communication with AWS Lambda.
+
+AWS IoT Core for device registration and MQTT communication.
+
+IoT-based Smart Sensors help you utilize technology from the beginning of your waste operations. With fill level sensor, supported by IoT technology, you can track the location, view fullness levels, and monitor the temperature of your smart bins. With location tracking, you can reduce the number of missing containers.
+
+Angular12, ExpressJs, MongoDB, AWS Iot Core, Lambda, DynamoDB, WebSocket
+
+
+
+<iframe src="https://player.vimeo.com/video/726337588?h=139d8956cb" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+<p><a href="https://vimeo.com/726337588">smartWaste.mp4</a> from <a href="https://vimeo.com/user179657088">Achref Y</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
