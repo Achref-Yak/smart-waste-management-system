@@ -46,3 +46,36 @@ resource "aws_iam_role_policy_attachment" "test_attach" {
 output "test_policy_arn" {
   value = aws_iam_role.test_oidc.arn
 }
+
+
+resource "aws_iam_role" "lambda_exec" {
+  name = "serverless_example_lambda"
+
+  
+      Statement = [{
+      Action = [
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketLocation"
+      ]
+      Effect   = "Allow"
+      Resource = "arn:aws:s3:::*"
+    }]
+   "Version": "2012-10-17",
+  })
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}
